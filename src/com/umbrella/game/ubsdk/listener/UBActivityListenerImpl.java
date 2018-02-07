@@ -1,17 +1,10 @@
 package com.umbrella.game.ubsdk.listener;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
 public class UBActivityListenerImpl implements UBActivityListener{
-
-	@Override
-	public void onApplicationInit(Context paramContext) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -21,6 +14,12 @@ public class UBActivityListenerImpl implements UBActivityListener{
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onRestart() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -44,12 +43,6 @@ public class UBActivityListenerImpl implements UBActivityListener{
 	}
 
 	@Override
-	public void onNewIntent(Intent newIntent) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void onStop() {
 		// TODO Auto-generated method stub
 		
@@ -62,15 +55,15 @@ public class UBActivityListenerImpl implements UBActivityListener{
 	}
 
 	@Override
-	public void onRestart() {
+	public void onNewIntent(Intent newIntent) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public boolean onBackPressed() {
+	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	@Override
@@ -79,4 +72,5 @@ public class UBActivityListenerImpl implements UBActivityListener{
 		
 	}
 
+	
 }
