@@ -44,7 +44,6 @@ public class UBSDK {
 	
 	private Activity mActivity;
 	
-	
 //	TODO**************************setListener*************************	
 //	初始化监听
 
@@ -95,6 +94,7 @@ public class UBSDK {
 
 	private UBPayCallback mUBPayCallback;
 	public void setUBPayCallback(UBPayCallback ubPayCallback){
+		UBLogUtil.logI(TAG+" setUBPayCallback");
 		this.mUBPayCallback=ubPayCallback;
 	}
 	public UBPayCallback getUBPayCallback(){
@@ -106,6 +106,7 @@ public class UBSDK {
 
 	private UBExitCallback mUBExitCallback;
 	public void setUBExitCallback(UBExitCallback ubExitCallback){
+		UBLogUtil.logI(TAG+" setUBExitCallback");
 		this.mUBExitCallback=ubExitCallback;
 	}
 	public UBExitCallback getUBExitCallback(){
