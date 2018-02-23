@@ -21,7 +21,8 @@ public class UBApplication extends Application{
 		MultiDex.install(this);
 		
 		UBSDKConfig.getInstance().setApplicationContext(this);
-		UBConfigModel.getInstance().initUBSDKConfig(false);
+//		TODO 这个地方控制解析加密、不加密文件的flag
+		UBConfigModel.getInstance().initUBSDKConfig(true);
 		channelProxyApplication = UBConfigModel.getInstance().getUBProxyChannelApplication();
 		if (channelProxyApplication!=null) channelProxyApplication.onProxyAttachBaseContext(this, base);
 	}

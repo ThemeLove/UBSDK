@@ -44,75 +44,8 @@ public class UBSDK {
 	
 	private Activity mActivity;
 	
+	
 //	TODO**************************setListener*************************	
-//	初始化监听
-
-	private UBInitCallback mUBInitCallback;
-	public void setUBInitCallback(UBInitCallback ubInitCallback){
-		UBLogUtil.logI(TAG+" setUBInitCallback");
-		this.mUBInitCallback=ubInitCallback;
-	}
-	public UBInitCallback getUBInitCallback(){
-		return mUBInitCallback;
-	}
-	
-//	登录监听
-	private UBLoginCallback mUBLoginCallback;
-	public void setUBLoginCallback(UBLoginCallback ubLoginCallback){
-		UBLogUtil.logI(TAG+" setUBLoginCallback");
-		this.mUBLoginCallback=ubLoginCallback;
-	}
-	public UBLoginCallback getUBLoginCallback(){
-		return mUBLoginCallback;
-	}
-	
-//	注销监听
-
-	private UBLogoutCallback mUBLogoutCallback;
-	public void setUBLogoutCallback(UBLogoutCallback ubLogoutCallback){
-		UBLogUtil.logI(TAG+" setUBLogoutCallback");
-		this.mUBLogoutCallback=ubLogoutCallback;
-	}
-	public UBLogoutCallback getUBLogoutCallback(){
-		return mUBLogoutCallback;
-	}
-	
-
-//	切换账号监听
-
-	private UBSwitchAccountCallback mUBSwitchAccountCallback;
-	public void setUBSwitchAccountCallback(UBSwitchAccountCallback ubSwitchAccountCallback){
-		UBLogUtil.logI(TAG+" setUBSwitchAccountCallback");
-		this.mUBSwitchAccountCallback=ubSwitchAccountCallback;
-	}
-	public UBSwitchAccountCallback getUBSwitchAccountCallback(){
-		return mUBSwitchAccountCallback;
-	}
-	
-
-//	支付监听
-
-	private UBPayCallback mUBPayCallback;
-	public void setUBPayCallback(UBPayCallback ubPayCallback){
-		UBLogUtil.logI(TAG+" setUBPayCallback");
-		this.mUBPayCallback=ubPayCallback;
-	}
-	public UBPayCallback getUBPayCallback(){
-		return mUBPayCallback;
-	}
-	
-
-//	退出监听
-
-	private UBExitCallback mUBExitCallback;
-	public void setUBExitCallback(UBExitCallback ubExitCallback){
-		UBLogUtil.logI(TAG+" setUBExitCallback");
-		this.mUBExitCallback=ubExitCallback;
-	}
-	public UBExitCallback getUBExitCallback(){
-		return mUBExitCallback;
-}
-	
 //	生命周期监听
 	private UBActivityListener mUBActivityListener;
 	public void setUBActivityListener (UBActivityListener ubActivityListener){
@@ -123,10 +56,28 @@ public class UBSDK {
 		return mUBActivityListener;
 	}
 	
+//	切换账号监听
+	private UBSwitchAccountCallback mUBSwitchAccountCallback;
+	public void setUBSwitchAccountCallback(UBSwitchAccountCallback ubSwitchAccountCallback){
+		UBLogUtil.logI(TAG+" setUBSwitchAccountCallback");
+		this.mUBSwitchAccountCallback=ubSwitchAccountCallback;
+	}
+	public UBSwitchAccountCallback getUBSwitchAccountCallback(){
+		return mUBSwitchAccountCallback;
+	}
+	
 //	TODO**************************init*************************	
-	public void init(Activity activity){
+	private UBInitCallback mUBInitCallback;
+	public UBInitCallback getUBInitCallback(){
+		return mUBInitCallback;
+	}
+	
+	public void init(Activity activity,UBInitCallback ubInitCallback){
 		this.mActivity=activity;
+		this.mUBInitCallback=ubInitCallback;
+		
 		UBLogUtil.logI(TAG+" init");
+		UBLogUtil.logI(TAG+" setUBInitCallback");
 		
 		UBSDKConfig.getInstance().setGameActivity(activity);
 		runOnUIThread(new Runnable() {
@@ -150,33 +101,61 @@ public class UBSDK {
 	}
 	
 //	TODO**************************login*************************	
-	public void login(){
+	private UBLoginCallback mUBLoginCallback;
+	public UBLoginCallback getUBLoginCallback(){
+		return mUBLoginCallback;
+	}
+	public void login(UBLoginCallback ubLoginCallback){
+		this.mUBLoginCallback=ubLoginCallback;
+		
 		UBLogUtil.logI(TAG+" login");
+		UBLogUtil.logI(TAG+" setUBLoginCallback");
+		
 		UBUser.getInstance().login();
 	}
-
+	
 //	TODO**************************logout*************************		
-	public void logout( ){
-
+	private UBLogoutCallback mUBLogoutCallback;
+	public UBLogoutCallback getUBLogoutCallback(){
+		return mUBLogoutCallback;
+	}
+	public void logout(UBLogoutCallback ubLogoutCallback){
 		UBLogUtil.logI(TAG+" logout");
+		UBLogUtil.logI(TAG+" setUBLogoutCallback");
+		
+		this.mUBLogoutCallback=ubLogoutCallback;
 		UBUser.getInstance().logout();
 	}
 	
 //	TODO**************************pay*************************	
-	public void pay(UBRoleInfo ubRoleInfo,UBOrderInfo ubOrderInfo){
+	private UBPayCallback mUBPayCallback;
+	public UBPayCallback getUBPayCallback(){
+		return mUBPayCallback;
+	}
+	public void pay(UBRoleInfo ubRoleInfo,UBOrderInfo ubOrderInfo,UBPayCallback ubPayCallback){
+		this.mUBPayCallback=ubPayCallback;
+		
 		UBLogUtil.logI(TAG+" pay");
+		UBLogUtil.logI(TAG+" setUBPayCallback");
+		
 		UBPay.getInstance().pay(ubRoleInfo, ubOrderInfo);
 	}
 	
 //	TODO**************************exit*************************	
-	public void exit( ){
-
+	private UBExitCallback mUBExitCallback;
+	public UBExitCallback getUBExitCallback(){
+		return mUBExitCallback;
+	}
+	public void exit(UBExitCallback ubExitCallback){
+		this.mUBExitCallback=ubExitCallback;
+		
 		UBLogUtil.logI(TAG+" exit");
+		UBLogUtil.logI(TAG+" setUBExitCallback");
+		
 		UBSetting.getInstance().exit();
 	}
 	
 //	TODO**************************activity lifecycle*************************
-
 	public void onCreate(Bundle savedInstanceState){
 		UBLogUtil.logI(TAG+" onCreate");
 		if (mUBActivityListener!=null) {
@@ -305,7 +284,6 @@ public class UBSDK {
 		UBUser.getInstance().setGameDataInfo(obj, dataType);
 	}
 	
-
 	/**
 	 * 自带退出框
 	 */
