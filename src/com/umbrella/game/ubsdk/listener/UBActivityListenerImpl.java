@@ -1,7 +1,5 @@
 package com.umbrella.game.ubsdk.listener;
-
 import com.umbrella.game.ubsdk.utils.UBLogUtil;
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -74,6 +72,5 @@ public class UBActivityListenerImpl implements UBActivityListener{
 		// TODO Auto-generated method stub
 		UBLogUtil.logI(TAG,"onConfigurationChanged");
 	}
-
 	
 }

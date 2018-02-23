@@ -47,6 +47,7 @@ public class UBSDK {
 	
 //	TODO**************************setListener*************************	
 //	初始化监听
+
 	private UBInitCallback mUBInitCallback;
 	public void setUBInitCallback(UBInitCallback ubInitCallback){
 		UBLogUtil.logI(TAG+" setUBInitCallback");
@@ -67,6 +68,7 @@ public class UBSDK {
 	}
 	
 //	注销监听
+
 	private UBLogoutCallback mUBLogoutCallback;
 	public void setUBLogoutCallback(UBLogoutCallback ubLogoutCallback){
 		UBLogUtil.logI(TAG+" setUBLogoutCallback");
@@ -76,7 +78,9 @@ public class UBSDK {
 		return mUBLogoutCallback;
 	}
 	
+
 //	切换账号监听
+
 	private UBSwitchAccountCallback mUBSwitchAccountCallback;
 	public void setUBSwitchAccountCallback(UBSwitchAccountCallback ubSwitchAccountCallback){
 		UBLogUtil.logI(TAG+" setUBSwitchAccountCallback");
@@ -86,7 +90,9 @@ public class UBSDK {
 		return mUBSwitchAccountCallback;
 	}
 	
+
 //	支付监听
+
 	private UBPayCallback mUBPayCallback;
 	public void setUBPayCallback(UBPayCallback ubPayCallback){
 		this.mUBPayCallback=ubPayCallback;
@@ -95,7 +101,9 @@ public class UBSDK {
 		return mUBPayCallback;
 	}
 	
+
 //	退出监听
+
 	private UBExitCallback mUBExitCallback;
 	public void setUBExitCallback(UBExitCallback ubExitCallback){
 		this.mUBExitCallback=ubExitCallback;
@@ -103,6 +111,7 @@ public class UBSDK {
 	public UBExitCallback getUBExitCallback(){
 		return mUBExitCallback;
 }
+	
 //	生命周期监听
 	private UBActivityListener mUBActivityListener;
 	public void setUBActivityListener (UBActivityListener ubActivityListener){
@@ -144,9 +153,10 @@ public class UBSDK {
 		UBLogUtil.logI(TAG+" login");
 		UBUser.getInstance().login();
 	}
-	
+
 //	TODO**************************logout*************************		
 	public void logout( ){
+
 		UBLogUtil.logI(TAG+" logout");
 		UBUser.getInstance().logout();
 	}
@@ -159,11 +169,13 @@ public class UBSDK {
 	
 //	TODO**************************exit*************************	
 	public void exit( ){
+
 		UBLogUtil.logI(TAG+" exit");
 		UBSetting.getInstance().exit();
 	}
 	
 //	TODO**************************activity lifecycle*************************
+
 	public void onCreate(Bundle savedInstanceState){
 		UBLogUtil.logI(TAG+" onCreate");
 		if (mUBActivityListener!=null) {
@@ -292,6 +304,7 @@ public class UBSDK {
 		UBUser.getInstance().setGameDataInfo(obj, dataType);
 	}
 	
+
 	/**
 	 * 自带退出框
 	 */

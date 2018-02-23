@@ -9,6 +9,7 @@ import com.umbrella.game.ubsdk.utils.UBLogUtil;
 public class UBSetting implements IUBSettingPlugin{
 	private final String TAG=getClass().getSimpleName();
 	private IUBSettingPlugin mUBSettingPlugin;
+
 	private static UBSetting instance;
 	private UBSetting (){}
 	public static UBSetting getInstance(){
@@ -26,6 +27,7 @@ public class UBSetting implements IUBSettingPlugin{
 		UBLogUtil.logI(TAG+" init");
 		
 		mUBSettingPlugin=(IUBSettingPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_SETTING.getPluginType());
+
 		if (mUBSettingPlugin!=null) {
 			UBLogUtil.logI("create settingPlugin success");
 		}else{

@@ -64,6 +64,7 @@ public class AssetUtil {
 	 */
 	public static String getAssetDESConfigStr(Context context,String fileName){
 		StringBuffer sb =null;
+
 		ObjectInputStream objis=null;
 		CipherInputStream cis=null;
 		InputStreamReader isr=null;
@@ -71,6 +72,7 @@ public class AssetUtil {
 		try {
 			sb = new StringBuffer();
 			objis = new ObjectInputStream(context.getAssets().open("ubsdk.dat"));
+
 //			获取打包脚本动态生成的解密key
 			Key key = (Key) objis.readObject();
 //			加解密有用Cipher来实现
