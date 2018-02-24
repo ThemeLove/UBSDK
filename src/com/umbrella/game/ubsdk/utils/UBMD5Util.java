@@ -129,17 +129,13 @@ public class UBMD5Util
 
     private static String getOrderedStringParanFromTreeMap(TreeMap<String, String> treeMap)
     {
-
         StringBuilder builder = new StringBuilder();
-
         for (String key : treeMap.keySet())
         {
             builder.append(key + "=");
             builder.append(treeMap.get(key));
             builder.append("&");
-
         }
-
         builder.deleteCharAt(builder.length() - 1);
         UBLogUtil.logI(TAG, builder.toString());
         return builder.toString();
