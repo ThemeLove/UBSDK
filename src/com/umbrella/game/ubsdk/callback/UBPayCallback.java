@@ -1,14 +1,16 @@
 package com.umbrella.game.ubsdk.callback;
 
 public interface UBPayCallback {
-
 	/**
-	 * 支付成功 paySuccess 
-	 * @param  ubOrderID  umbrella pay orderid
-	 * @param  cpOrderID
-	 * @param  extrasParams
+	 * pay success
+	 * @param cpOrderID			game's pay orderid
+	 * @param orderID			channel's pay orderid
+	 * @param goodsId			goods's id
+	 * @param goodsName			goods's name
+	 * @param goodsPrice		goods's price
+	 * @param extrasParams		extra params
 	 */
-    public void onSuccess(String ubOrderID, String cpOrderID, String extrasParams);
+    public void onSuccess(String cpOrderID, String orderID,String goodsId,String goodsName,String goodsPrice, String extrasParams);
 
     /**
      * 支付取消

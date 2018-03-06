@@ -45,7 +45,7 @@ public class DemoSDK {
 	}
 	
 	public void logout(){
-		UBDialog.showNormalDialog(mActivity, "注销", "模拟注销", "注销成功", new DialogInterface.OnClickListener() {
+		UBDialog.showNormalDialog(mActivity, "logout", "Simulate store logout", "success", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -55,7 +55,7 @@ public class DemoSDK {
 				dialog.dismiss();
 				dialog=null;
 			}
-		}, "注销失败", new DialogInterface.OnClickListener() {
+		}, "fail", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -68,8 +68,13 @@ public class DemoSDK {
 		});
 	}
 	
+	public void gamePause(){
+		UBSDK.getInstance().getUBGamePauseCallback().onGamePause();
+		UBLogUtil.logI(TAG,"gamePause");
+	}
+	
 	public void exit(){
-		UBDialog.showNormalDialog(mActivity, "退出游戏", "确定退出吗？", "退出", new DialogInterface.OnClickListener() {
+		UBDialog.showNormalDialog(mActivity, "exit the game", "Are you sure you want to quit?", "exit", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -79,11 +84,11 @@ public class DemoSDK {
 				dialog.dismiss();
 				dialog=null;
 			}
-		}, "取消", new DialogInterface.OnClickListener() {
+		}, "cancel", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				UBSDK.getInstance().getUBExitCallback().onCancel("取消",null);
+				UBSDK.getInstance().getUBExitCallback().onCancel("user cancel",null);
 				
 //				隐藏dialog
 				dialog.dismiss();
@@ -98,7 +103,7 @@ public class DemoSDK {
 	}
 	
 	public void login(){
-		UBDialog.showNormalDialog(mActivity, "登录", "模拟渠道sdk登录", "登录成功",new DialogInterface.OnClickListener() {
+		UBDialog.showNormalDialog(mActivity, "login", "Simulate store login", "success",new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				UBUserInfo ubUserInfo = new UBUserInfo();
@@ -116,7 +121,7 @@ public class DemoSDK {
 				dialog.dismiss();
 				dialog=null;
 			}
-		}, "登录失败",new DialogInterface.OnClickListener() {
+		}, "fail",new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -131,18 +136,18 @@ public class DemoSDK {
 	}
 	
 	public void pay(final UBRoleInfo ubRoleInfo,final UBOrderInfo ubOrderInfo){
-		UBDialog.showNormalDialog(mActivity, "支付", "模拟渠道sdk支付", "支付成功", new DialogInterface.OnClickListener() {
+		UBDialog.showNormalDialog(mActivity, "pay", "Simulate store payment", "success", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 //				成功回调
-				UBSDK.getInstance().getUBPayCallback().onSuccess(ubOrderInfo.getOrderId(), ubOrderInfo.getCpOrderId(), ubOrderInfo.getExtrasParams());
+				UBSDK.getInstance().getUBPayCallback().onSuccess(ubOrderInfo.getCpOrderId(),ubOrderInfo.getOrderId(), ubOrderInfo.getGoodsId(),ubOrderInfo.getGoodsName(),ubOrderInfo.getAmount()+"", ubOrderInfo.getExtrasParams());
 				
 //				隐藏dialog
 				dialog.dismiss();
 				dialog=null;
 			}
-		}, "支付失败", new DialogInterface.OnClickListener() {
+		}, "fail", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

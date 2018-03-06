@@ -7,6 +7,11 @@ public interface IUBSettingPlugin {
 //    public void setIsLandScape(boolean isLandScape);
     
 //    public void setShowExitDialog(boolean showExitDialog);
+	
+	/**
+	 * 游戏暂停接口
+	 */
+	public void gamePause();
     
     public void exit();
     

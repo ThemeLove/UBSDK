@@ -10,7 +10,7 @@ import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
 public class UBUser implements IUBUserPlugin{
 	private final String TAG=getClass().getSimpleName();
-	private IUBUserPlugin mUBUserPlugin;
+	private IUBUserPlugin mUBUserPlugin=null;
 	private static UBUser instance;
 	private UBUser(){}
 	
