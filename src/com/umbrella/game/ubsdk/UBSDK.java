@@ -4,6 +4,7 @@ import com.umbrella.game.ubsdk.bean.DataType;
 import com.umbrella.game.ubsdk.bean.UBOrderInfo;
 import com.umbrella.game.ubsdk.bean.UBRoleInfo;
 import com.umbrella.game.ubsdk.callback.UBExitCallback;
+import com.umbrella.game.ubsdk.callback.UBGamePauseCallback;
 import com.umbrella.game.ubsdk.callback.UBInitCallback;
 import com.umbrella.game.ubsdk.callback.UBLoginCallback;
 import com.umbrella.game.ubsdk.callback.UBLogoutCallback;
@@ -100,11 +101,26 @@ public class UBSDK {
 		}
 	}
 	
+//	TODO**************************gamePause*************************		
+	private UBGamePauseCallback mUBGamePauseCallback;
+	public UBGamePauseCallback getUBGamePauseCallback(){
+		return mUBGamePauseCallback;
+	}
+	
+	public void gamePause(UBGamePauseCallback ubGamePauseCallback){
+		this.mUBGamePauseCallback=ubGamePauseCallback;
+		UBLogUtil.logI(TAG+" gamePause");
+		UBLogUtil.logI(TAG+" setUBGamePauseCallback");
+		
+		UBSetting.getInstance().gamePause();
+	}
+	
 //	TODO**************************login*************************	
 	private UBLoginCallback mUBLoginCallback;
 	public UBLoginCallback getUBLoginCallback(){
 		return mUBLoginCallback;
 	}
+	
 	public void login(UBLoginCallback ubLoginCallback){
 		this.mUBLoginCallback=ubLoginCallback;
 		

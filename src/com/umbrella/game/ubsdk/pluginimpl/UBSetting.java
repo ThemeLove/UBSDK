@@ -34,6 +34,22 @@ public class UBSetting implements IUBSettingPlugin{
 			UBLogUtil.logE("no instance of settingPlugin");
 		}
 	}
+	
+	@Override
+	public void gamePause() {
+		UBLogUtil.logI(TAG+" gamePause");
+		if (mUBSettingPlugin!=null) {
+			UBSDK.getInstance().runOnUIThread(new Runnable() {
+				
+				@Override
+				public void run() {
+					mUBSettingPlugin.gamePause();
+				}
+			});
+		}else{
+			UBLogUtil.logE("no instance of settingPlugin");
+		}
+	}
 
 	@Override
 	public void exit() {
@@ -110,5 +126,6 @@ public class UBSetting implements IUBSettingPlugin{
 		}
 		return result;
 	}
+
 
 }
