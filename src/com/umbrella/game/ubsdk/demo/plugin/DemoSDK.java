@@ -36,7 +36,6 @@ public class DemoSDK {
 			@Override
 			public void onBackPressed() {
 				super.onBackPressed();
-				exit();
 			}
 		});
 		

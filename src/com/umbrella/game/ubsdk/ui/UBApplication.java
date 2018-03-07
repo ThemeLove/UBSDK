@@ -22,7 +22,7 @@ public class UBApplication extends Application{
 		
 		UBSDKConfig.getInstance().setApplicationContext(this);
 //		TODO 这个地方控制解析加密、不加密文件的flag
-		UBConfigModel.getInstance().initUBSDKConfig(false);
+		UBConfigModel.getInstance().initUBSDKConfig(true);
 		channelProxyApplication = UBConfigModel.getInstance().getUBProxyChannelApplication();
 		if (channelProxyApplication!=null) channelProxyApplication.onProxyAttachBaseContext(this, base);
 	}
