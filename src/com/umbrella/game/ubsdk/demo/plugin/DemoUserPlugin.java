@@ -1,6 +1,5 @@
 package com.umbrella.game.ubsdk.demo.plugin;
 
-import com.umbrella.game.ubsdk.bean.DataType;
 import com.umbrella.game.ubsdk.bean.UBUserInfo;
 import com.umbrella.game.ubsdk.iplugin.IUBUserPlugin;
 
@@ -30,7 +29,7 @@ public class DemoUserPlugin implements IUBUserPlugin{
 	}
 
 	@Override
-	public void setGameDataInfo(Object obj, DataType dataType) {
+	public void setGameDataInfo(Object obj, int dataType) {
 		// TODO Auto-generated method stub
 		DemoSDK.getInstance().setGameDataInfo(obj, dataType);
 	}

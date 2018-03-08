@@ -1,7 +1,6 @@
 package com.umbrella.game.ubsdk.pluginimpl;
 
 import com.umbrella.game.ubsdk.UBSDK;
-import com.umbrella.game.ubsdk.bean.DataType;
 import com.umbrella.game.ubsdk.bean.UBUserInfo;
 import com.umbrella.game.ubsdk.factory.PluginFactory;
 import com.umbrella.game.ubsdk.iplugin.IUBUserPlugin;
@@ -82,7 +81,7 @@ public class UBUser implements IUBUserPlugin{
 	}
 
 	@Override
-	public void setGameDataInfo(Object obj, DataType dataType) {
+	public void setGameDataInfo(Object obj, int dataType) {
 		UBLogUtil.logI(TAG+" setGameDataInfo");
 		if (mUBUserPlugin!=null) {
 			mUBUserPlugin.setGameDataInfo(obj,dataType);

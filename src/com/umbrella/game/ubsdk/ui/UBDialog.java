@@ -17,7 +17,7 @@ public class UBDialog {
 	}
 	
 	public static void showExitDialog(final Activity activity){
-		showNormalDialog(activity, "退出游戏","确定退出游戏吗", "退出", new DialogInterface.OnClickListener() {
+		showNormalDialog(activity, "exit the game","Are you sure you want to quit?", "exit", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -25,7 +25,7 @@ public class UBDialog {
 				System.exit(0);
 				Process.killProcess(Process.myPid());
 			}
-		}, "取消",new DialogInterface.OnClickListener() {
+		}, "cancel",new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

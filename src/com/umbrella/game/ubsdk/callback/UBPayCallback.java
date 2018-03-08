@@ -10,7 +10,7 @@ public interface UBPayCallback {
 	 * @param goodsPrice		goods's price
 	 * @param extrasParams		extra params
 	 */
-    public void onSuccess(String cpOrderID, String orderID,String goodsId,String goodsName,String goodsPrice, String extrasParams);
+    public void onSuccess(String cpOrderID, String orderID,String goodsID,String goodsName,String goodsPrice, String extrasParams);
 
     /**
      * 支付取消

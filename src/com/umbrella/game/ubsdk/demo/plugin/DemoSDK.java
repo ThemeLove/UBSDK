@@ -140,7 +140,7 @@ public class DemoSDK {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 //				成功回调
-				UBSDK.getInstance().getUBPayCallback().onSuccess(ubOrderInfo.getCpOrderId(),ubOrderInfo.getOrderId(), ubOrderInfo.getGoodsId(),ubOrderInfo.getGoodsName(),ubOrderInfo.getAmount()+"", ubOrderInfo.getExtrasParams());
+				UBSDK.getInstance().getUBPayCallback().onSuccess(ubOrderInfo.getCpOrderID(),ubOrderInfo.getOrderID(), ubOrderInfo.getGoodsID(),ubOrderInfo.getGoodsName(),ubOrderInfo.getAmount()+"", ubOrderInfo.getExtrasParams());
 				
 //				隐藏dialog
 				dialog.dismiss();
@@ -151,7 +151,7 @@ public class DemoSDK {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 //				失败回调
-				UBSDK.getInstance().getUBPayCallback().onFailed(ubOrderInfo.getCpOrderId(), "parameter error", null);
+				UBSDK.getInstance().getUBPayCallback().onFailed(ubOrderInfo.getCpOrderID(), "parameter error", null);
 				
 //				隐藏dialog
 				dialog.dismiss();
@@ -160,15 +160,15 @@ public class DemoSDK {
 		});
 	}
 	
-	public void setGameDataInfo(Object obj,DataType dataType){
+	public void setGameDataInfo(Object obj,int dataType){
 		switch (dataType) {
-		case CREATE_ROLE:
+		case DataType.CREATE_ROLE:
 			UBLogUtil.logI(TAG, "create_role");
 			break;
-		case ENTER_GAME:
+		case DataType.ENTER_GAME:
 			UBLogUtil.logI(TAG, "enter_game");
 			break;
-		case LEVEL_UP:
+		case DataType.LEVEL_UP:
 			UBLogUtil.logI(TAG, "level_up");
 			break;
 		default:

@@ -11,14 +11,14 @@ import android.util.Log;
 
 public class UBMD5Util
 {
-    private String md5_secretKey = "2aaa08de964854800c204e400006f45b";
+    private  static String MD5_secretKey = "2aaa08de964854800c204e400006f45b";
 
     private static final String TAG = UBMD5Util.class.getSimpleName() + "Util";
 
     // MD5加密String[]数组
-    public String MD5EncryptString(String[] originalStringArray, String md5_secretKey)
+    public static String MD5EncryptString(String[] originalStringArray, String md5_secretKey)
     {
-        this.md5_secretKey = md5_secretKey;
+        MD5_secretKey = md5_secretKey;
         if (originalStringArray == null)
             return null;
         else
@@ -48,7 +48,7 @@ public class UBMD5Util
 
     }
 
-    public String MD5EncryptString1(String s)
+    public static String MD5EncryptString1(String s)
     {
 
         byte[] result = null;
@@ -71,9 +71,9 @@ public class UBMD5Util
     }
 
     // MD5加密String[]数组
-    public String MD5EncryptString(TreeMap<String, String> urlParam, String md5_secretKey)
+    public static String MD5EncryptString(TreeMap<String, String> urlParam, String md5_secretKey)
     {
-        this.md5_secretKey = md5_secretKey;
+    	MD5_secretKey = md5_secretKey;
         if (urlParam == null || urlParam.size() < 1)
             return null;
         else
@@ -105,7 +105,7 @@ public class UBMD5Util
     }
 
     // 气泡排序数组
-    private String getOrderedStringFromArray(String[] originalStringArray)
+    private static String getOrderedStringFromArray(String[] originalStringArray)
     {
         BubbleSort(originalStringArray, 0);
         StringBuilder result = new StringBuilder();
@@ -119,7 +119,7 @@ public class UBMD5Util
             }
             else
             {
-                result.append(md5_secretKey);
+                result.append(MD5_secretKey);
             }
 
         }

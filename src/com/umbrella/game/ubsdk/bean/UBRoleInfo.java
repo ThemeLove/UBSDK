@@ -1,32 +1,33 @@
 package com.umbrella.game.ubsdk.bean;
 
 public class UBRoleInfo {
-	private String serverId="0";		//服务器id
+	private String serverID="0";		//服务器id
 	private String serverName="";		//服务器名字
-	private String roleId="0";			//角色id
+	private String roleID="0";			//角色id
 	private String roleName="";			//角色名字
 	private String roleLevel="";		//角色等级
 	private String roleCreateTime="";	//角色创建时间
 	private String vipLevel="";			//vip等级
 	private String gameBalance="";		//游戏币余额
 	private String partyName="";		//公会名称
-	public String getServerId() {
-		return serverId;
-	}
-	public void setServerId(String serverId) {
-		this.serverId = serverId;
-	}
+
 	public String getServerName() {
 		return serverName;
 	}
 	public void setServerName(String serverName) {
 		this.serverName = serverName;
 	}
-	public String getRoleId() {
-		return roleId;
+	public String getServerID() {
+		return serverID;
 	}
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
+	public void setServerID(String serverID) {
+		this.serverID = serverID;
+	}
+	public String getRoleID() {
+		return roleID;
+	}
+	public void setRoleID(String roleID) {
+		this.roleID = roleID;
 	}
 	public String getRoleName() {
 		return roleName;
@@ -66,7 +67,7 @@ public class UBRoleInfo {
 	}
 	@Override
 	public String toString() {
-		return "UBRoleInfo [serverId=" + serverId + ", serverName=" + serverName + ", roleId=" + roleId + ", roleName="
+		return "UBRoleInfo [serverId=" + serverID + ", serverName=" + serverName + ", roleId=" + roleID + ", roleName="
 				+ roleName + ", roleLevel=" + roleLevel + ", roleCreateTime=" + roleCreateTime + ", vipLevel="
 				+ vipLevel + ", gameBalance=" + gameBalance + ", partyName=" + partyName + "]";
 	}

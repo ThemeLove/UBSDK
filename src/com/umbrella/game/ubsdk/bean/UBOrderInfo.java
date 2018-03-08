@@ -1,22 +1,20 @@
 package com.umbrella.game.ubsdk.bean;
 
 public class UBOrderInfo {
-	private String goodsId="";
+	private String goodsID="";
 	private String goodsName="";
 	private String goodsDesc="";
 	private String quantifier="";
-	private int count;
-	private double amount;
+	private int count=1;
+	private double amount=0;
 	private String callbackUrl="";
 	private String extrasParams="";
-	private String cpOrderId="";
-	private String OrderId="";
-	public String getGoodsId() {
-		return goodsId;
-	}
-	public void setGoodsId(String goodsId) {
-		this.goodsId = goodsId;
-	}
+	private String cpOrderID="";
+	private String cpOrderCreateTime="";
+	private String orderID="";
+	private String orderIdCreateTime="";
+	private int payType=1;
+
 	public String getGoodsName() {
 		return goodsName;
 	}
@@ -59,23 +57,52 @@ public class UBOrderInfo {
 	public void setExtrasParams(String extrasParams) {
 		this.extrasParams = extrasParams;
 	}
-	public String getCpOrderId() {
-		return cpOrderId;
+
+	public String getGoodsID() {
+		return goodsID;
 	}
-	public void setCpOrderId(String cpOrderId) {
-		this.cpOrderId = cpOrderId;
+	public void setGoodsID(String goodsID) {
+		this.goodsID = goodsID;
 	}
-	public String getOrderId() {
-		return OrderId;
+	public String getCpOrderID() {
+		return cpOrderID;
 	}
-	public void setOrderId(String orderId) {
-		OrderId = orderId;
+	public void setCpOrderID(String cpOrderID) {
+		this.cpOrderID = cpOrderID;
 	}
+	public String getOrderID() {
+		return orderID;
+	}
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
+	}
+	public String getOrderIdCreateTime() {
+		return orderIdCreateTime;
+	}
+	public void setOrderIdCreateTime(String orderIdCreateTime) {
+		this.orderIdCreateTime = orderIdCreateTime;
+	}
+	
+	public String getCpOrderCreateTime() {
+		return cpOrderCreateTime;
+	}
+	public void setCpOrderCreateTime(String cpOrderCreateTime) {
+		this.cpOrderCreateTime = cpOrderCreateTime;
+	}
+	
+	public int getPayType() {
+		return payType;
+	}
+	
+	public void setPayType(int payType) {
+		this.payType = payType;
+	}
+	
 	@Override
 	public String toString() {
-		return "UBOrderInfo [goodsId=" + goodsId + ", goodsName=" + goodsName + ", goodsDesc=" + goodsDesc
+		return "UBOrderInfo [goodsId=" + goodsID + ", goodsName=" + goodsName + ", goodsDesc=" + goodsDesc
 				+ ", quantifier=" + quantifier + ", count=" + count + ", amount=" + amount + ", callbackUrl="
-				+ callbackUrl + ", extrasParams=" + extrasParams + ", cpOrderId=" + cpOrderId + ", OrderId=" + OrderId
+				+ callbackUrl + ", extrasParams=" + extrasParams + ", cpOrderId=" + cpOrderID + ", OrderId=" + orderID
 				+ "]";
 	}
 }

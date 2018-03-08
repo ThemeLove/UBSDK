@@ -1,7 +1,16 @@
 package com.umbrella.game.ubsdk.bean;
 
-public enum DataType {
-	CREATE_ROLE,
-	ENTER_GAME,
-	LEVEL_UP;
+public class DataType {
+	/**
+	 * create role
+	 */
+	public static final int CREATE_ROLE=1;
+	/**
+	 * enter game
+	 */
+	public static final int ENTER_GAME=2;
+	/**
+	 * level up
+	 */
+	public static final int LEVEL_UP=3;
 }

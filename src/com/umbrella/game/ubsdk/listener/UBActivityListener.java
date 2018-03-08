@@ -5,9 +5,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 
 public interface UBActivityListener {
-//	  public abstract void onApplicationInit(Context paramContext);
-	  
-	  public void onActivityResult(int requestCode, int resultCode, Intent data);
 
 	  public void onCreate(Bundle savedInstanceState);
 	  
@@ -19,6 +16,11 @@ public interface UBActivityListener {
 
 	  public void onResume();
 
+	  /**
+	   * Called when the window has been attached to the window manager
+	   */
+	  public void onAttachedToWindow() ;
+	  
 	  public void onStop();
 
 	  public void onDestroy();
@@ -28,4 +30,6 @@ public interface UBActivityListener {
 	  public void onBackPressed();
 	  
 	  public void onConfigurationChanged(Configuration newConfig);
+	  
+	  public void onActivityResult(int requestCode, int resultCode, Intent data);
 }

@@ -1,6 +1,5 @@
 package com.umbrella.game.ubsdk;
 
-import com.umbrella.game.ubsdk.bean.DataType;
 import com.umbrella.game.ubsdk.bean.UBOrderInfo;
 import com.umbrella.game.ubsdk.bean.UBRoleInfo;
 import com.umbrella.game.ubsdk.callback.UBExitCallback;
@@ -295,7 +294,7 @@ public class UBSDK {
 	 * @param obj
 	 * @param dataType 
 	 */
-	public void setGameDataInfo(Object obj,DataType dataType){
+	public void setGameDataInfo(Object obj,int dataType){
 		UBLogUtil.logI(TAG+" setGameDataInfo");
 		UBUser.getInstance().setGameDataInfo(obj, dataType);
 	}
