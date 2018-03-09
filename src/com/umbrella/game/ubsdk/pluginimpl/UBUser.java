@@ -8,7 +8,7 @@ import com.umbrella.game.ubsdk.iplugin.PluginType;
 import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
 public class UBUser implements IUBUserPlugin{
-	private final String TAG=getClass().getSimpleName();
+	private final String TAG=UBUser.class.getSimpleName();
 	private IUBUserPlugin mUBUserPlugin=null;
 	private static UBUser instance;
 	private UBUser(){}
@@ -25,20 +25,18 @@ public class UBUser implements IUBUserPlugin{
 	}
 	
 	public void init(){
-		UBLogUtil.logI(TAG+" init");
-		
+		UBLogUtil.logI(TAG+"----->init");
 		mUBUserPlugin=(IUBUserPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_USER.getPluginType());
-		
 		if (mUBUserPlugin==null) {
-			UBLogUtil.logE("no instance of userPlugin");
+			UBLogUtil.logE(TAG+"----->no instance of userPlugin");
 		}else{
-			UBLogUtil.logI("create userPlugin success");
+			UBLogUtil.logI(TAG+"----->create userPlugin success");
 		}
 	}
 
 	@Override
 	public void login() {
-		UBLogUtil.logI(TAG+" login");
+		UBLogUtil.logI(TAG+"----->login");
 		
 		if (mUBUserPlugin!=null){
 			UBSDK.getInstance().runOnUIThread(new Runnable() {
@@ -48,14 +46,22 @@ public class UBUser implements IUBUserPlugin{
 					mUBUserPlugin.login();
 				}
 			});
-		}else{
-			UBLogUtil.logE("no instance of userPlugin");
+		}else{//插件没有实例化，直接给出失败回调。
+			UBSDK.getInstance().runOnUIThread(new Runnable() {
+				
+				@Override
+				public void run() {
+					UBLogUtil.logE(TAG+"----->no instance of userPlugin");
+					UBSDK.getInstance().getUBLoginCallback().onFailed("no instance of userPlugin", null);
+				}
+			});
+			
 		}
 	}
 
 	@Override
 	public void logout() {
-		UBLogUtil.logI(TAG+" logout");
+		UBLogUtil.logI(TAG+"----->logout");
 		if (mUBUserPlugin!=null){
 			UBSDK.getInstance().runOnUIThread(new Runnable() {
 				
@@ -65,28 +71,28 @@ public class UBUser implements IUBUserPlugin{
 				}
 			});
 		}else{
-			UBLogUtil.logE("no instance of userPlugin");
+			UBLogUtil.logE(TAG+"----->no instance of userPlugin");
 		} 
 	}
 
 	@Override
 	public UBUserInfo getUserInfo() {
-		UBLogUtil.logI(TAG+" getUserInfo");
+		UBLogUtil.logI(TAG+"----->getUserInfo");
 		if (mUBUserPlugin!=null) {
 			return mUBUserPlugin.getUserInfo();
 		}else{
-			UBLogUtil.logE("no instance of userPlugin");
+			UBLogUtil.logE(TAG+"----->no instance of userPlugin");
 			return null;
 		}
 	}
 
 	@Override
 	public void setGameDataInfo(Object obj, int dataType) {
-		UBLogUtil.logI(TAG+" setGameDataInfo");
+		UBLogUtil.logI(TAG+"----->setGameDataInfo");
 		if (mUBUserPlugin!=null) {
 			mUBUserPlugin.setGameDataInfo(obj,dataType);
 		}else{
-			UBLogUtil.logE("no instance of userPlugin");
+			UBLogUtil.logE(TAG+"----->no instance of userPlugin");
 		}
 	}
 }

@@ -9,7 +9,7 @@ import com.umbrella.game.ubsdk.iplugin.PluginType;
 import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
 public class UBPay implements IUBPayPlugin{
-	private final String TAG=getClass().getSimpleName();
+	private final String TAG=UBPay.class.getSimpleName();
 	private IUBPayPlugin mUBPayPlugin;
 	private static UBPay instance;
 	private UBPay(){}
@@ -25,18 +25,18 @@ public class UBPay implements IUBPayPlugin{
 	}
 
 	public void init(){
-		UBLogUtil.logI(TAG+" init");
+		UBLogUtil.logI(TAG+"----->init");
 		mUBPayPlugin=(IUBPayPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_PAY.getPluginType());
 		if (mUBPayPlugin==null) {
-			UBLogUtil.logE("no instance for payPlugin");
+			UBLogUtil.logE(TAG+"----->no instance of payPlugin");
 		}else{
-			UBLogUtil.logI("create payPlugin success");
+			UBLogUtil.logI(TAG+"----->create payPlugin success");
 		}
 	}
 	
 	@Override
 	public void pay(final UBRoleInfo ubRoleInfo, final UBOrderInfo ubOrderInfo) {
-		UBLogUtil.logI(TAG+" pay");
+		UBLogUtil.logI(TAG+"----->pay");
 		if (mUBPayPlugin!=null) {
 			UBSDK.getInstance().runOnUIThread(new Runnable() {
 				
@@ -46,7 +46,15 @@ public class UBPay implements IUBPayPlugin{
 				}
 			});
 		}else{
-			UBLogUtil.logE("no instance for payPlugin");
+			UBSDK.getInstance().runOnUIThread(new Runnable() {
+				
+				@Override
+				public void run() {
+					UBLogUtil.logE(TAG+"----->no instance of payPlugin");
+					UBSDK.getInstance().getUBPayCallback().onFailed("","no instance of payPlugin",null); 
+				}
+			});
+			
 		}
 	}
 

@@ -13,7 +13,16 @@ public class UBSDKConfig {
 	public static final String UBSDK_CONFIG_FILENAME="ubsdk_config.xml";
     //闪屏图片名称
     public static final String SPLASH_DRAWABLE_NAME = "ubsdk_splash";
-
+    
+    public static final String UB_GameID="UB_GameID";
+    public static final String UB_GameDebug="UB_GameDebug";
+    public static final String UB_GameOrientation="UB_GameOrientation";
+    public static final String UB_GameMainActivityName="UB_GameMainActivityName";
+    
+    public static final String UB_PlatformID="UB_PlatformID";
+    public static final String UB_SubPlatformID="UB_SubPlarformID";
+    public static final String UB_ChannelID="UB_ChannelID";
+    public static final String UB_SubChannelID="UB_SubChannelID";
 	
 	private UBGame ubGame;
 	private UBChannel ubChannel;
