@@ -11,6 +11,7 @@ import com.umbrella.game.ubsdk.callback.UBPayCallback;
 import com.umbrella.game.ubsdk.callback.UBSwitchAccountCallback;
 import com.umbrella.game.ubsdk.config.UBSDKConfig;
 import com.umbrella.game.ubsdk.listener.UBActivityListener;
+import com.umbrella.game.ubsdk.pluginimpl.UBInit;
 import com.umbrella.game.ubsdk.pluginimpl.UBPay;
 import com.umbrella.game.ubsdk.pluginimpl.UBSetting;
 import com.umbrella.game.ubsdk.pluginimpl.UBUser;
@@ -25,7 +26,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 public class UBSDK {
-	private final String TAG=getClass().getSimpleName();
+	private final String TAG=UBSDK.class.getSimpleName();
 	private static UBSDK instance=null;
 	private Handler mMainThreadHandler=null;
 	private UBSDK(){
@@ -49,7 +50,7 @@ public class UBSDK {
 //	生命周期监听
 	private UBActivityListener mUBActivityListener;
 	public void setUBActivityListener (UBActivityListener ubActivityListener){
-		UBLogUtil.logI(TAG+" setUBActivityListener");
+		UBLogUtil.logI(TAG+"----->setUBActivityListener");
 		mUBActivityListener=ubActivityListener;
 	}
 	public UBActivityListener getUBActivityListener(){
@@ -59,7 +60,7 @@ public class UBSDK {
 //	切换账号监听
 	private UBSwitchAccountCallback mUBSwitchAccountCallback;
 	public void setUBSwitchAccountCallback(UBSwitchAccountCallback ubSwitchAccountCallback){
-		UBLogUtil.logI(TAG+" setUBSwitchAccountCallback");
+		UBLogUtil.logI(TAG+"----->setUBSwitchAccountCallback");
 		this.mUBSwitchAccountCallback=ubSwitchAccountCallback;
 	}
 	public UBSwitchAccountCallback getUBSwitchAccountCallback(){
@@ -76,17 +77,15 @@ public class UBSDK {
 		this.mActivity=activity;
 		this.mUBInitCallback=ubInitCallback;
 		
-		UBLogUtil.logI(TAG+" init");
-		UBLogUtil.logI(TAG+" setUBInitCallback");
+		UBLogUtil.logI(TAG+"----->init");
+		UBLogUtil.logI(TAG+"----->setUBInitCallback");
 		
 		UBSDKConfig.getInstance().setGameActivity(activity);
 		runOnUIThread(new Runnable() {
 			
 			@Override
 			public void run() {
-				UBUser.getInstance().init();
-				UBPay.getInstance().init();
-				UBSetting.getInstance().init();
+				UBInit.getInstance().initChannel();
 			}
 		});
 	}
@@ -108,8 +107,8 @@ public class UBSDK {
 	
 	public void gamePause(UBGamePauseCallback ubGamePauseCallback){
 		this.mUBGamePauseCallback=ubGamePauseCallback;
-		UBLogUtil.logI(TAG+" gamePause");
-		UBLogUtil.logI(TAG+" setUBGamePauseCallback");
+		UBLogUtil.logI(TAG+"----->gamePause");
+		UBLogUtil.logI(TAG+"----->setUBGamePauseCallback");
 		
 		UBSetting.getInstance().gamePause();
 	}
@@ -123,8 +122,8 @@ public class UBSDK {
 	public void login(UBLoginCallback ubLoginCallback){
 		this.mUBLoginCallback=ubLoginCallback;
 		
-		UBLogUtil.logI(TAG+" login");
-		UBLogUtil.logI(TAG+" setUBLoginCallback");
+		UBLogUtil.logI(TAG+"----->login");
+		UBLogUtil.logI(TAG+"----->setUBLoginCallback");
 		
 		UBUser.getInstance().login();
 	}
@@ -134,9 +133,10 @@ public class UBSDK {
 	public UBLogoutCallback getUBLogoutCallback(){
 		return mUBLogoutCallback;
 	}
+	
 	public void logout(UBLogoutCallback ubLogoutCallback){
-		UBLogUtil.logI(TAG+" logout");
-		UBLogUtil.logI(TAG+" setUBLogoutCallback");
+		UBLogUtil.logI(TAG+"----->logout");
+		UBLogUtil.logI(TAG+"----->setUBLogoutCallback");
 		
 		this.mUBLogoutCallback=ubLogoutCallback;
 		UBUser.getInstance().logout();
@@ -150,8 +150,8 @@ public class UBSDK {
 	public void pay(UBRoleInfo ubRoleInfo,UBOrderInfo ubOrderInfo,UBPayCallback ubPayCallback){
 		this.mUBPayCallback=ubPayCallback;
 		
-		UBLogUtil.logI(TAG+" pay");
-		UBLogUtil.logI(TAG+" setUBPayCallback");
+		UBLogUtil.logI(TAG+"----->pay");
+		UBLogUtil.logI(TAG+"----->setUBPayCallback");
 		
 		UBPay.getInstance().pay(ubRoleInfo, ubOrderInfo);
 	}
@@ -164,85 +164,85 @@ public class UBSDK {
 	public void exit(UBExitCallback ubExitCallback){
 		this.mUBExitCallback=ubExitCallback;
 		
-		UBLogUtil.logI(TAG+" exit");
-		UBLogUtil.logI(TAG+" setUBExitCallback");
+		UBLogUtil.logI(TAG+"----->exit");
+		UBLogUtil.logI(TAG+"----->setUBExitCallback");
 		
 		UBSetting.getInstance().exit();
 	}
 	
 //	TODO**************************activity lifecycle*************************
 	public void onCreate(Bundle savedInstanceState){
-		UBLogUtil.logI(TAG+" onCreate");
+		UBLogUtil.logI(TAG+"----->onCreate");
 		if (mUBActivityListener!=null) {
 			mUBActivityListener.onCreate(savedInstanceState);
 		}
 	}
 	
 	public void onRestart(){
-		UBLogUtil.logI(TAG+" onRestart");
+		UBLogUtil.logI(TAG+"----->onRestart");
 		if (mUBActivityListener!=null) {
 			mUBActivityListener.onRestart();
 		}
 	}
 	
 	public void onStart(){
-		UBLogUtil.logI(TAG+" onStart");
+		UBLogUtil.logI(TAG+"----->onStart");
 		if (mUBActivityListener!=null) {
 			mUBActivityListener.onStart();
 		}
 	}
 	
 	public void onResume(){
-		UBLogUtil.logI(TAG+" onResume");
+		UBLogUtil.logI(TAG+"----->onResume");
 		if (mUBActivityListener!=null) {
 			mUBActivityListener.onResume();
 		}
 	}
 	
 	public void onPause(){
-		UBLogUtil.logI(TAG+" onPause");
+		UBLogUtil.logI(TAG+"----->onPause");
 		if (mUBActivityListener!=null) {
 			mUBActivityListener.onPause();
 		}
 	}
 	
 	public void onStop(){
-		UBLogUtil.logI(TAG+" onStop");
+		UBLogUtil.logI(TAG+"----->onStop");
 		if (mUBActivityListener!=null) {
 			mUBActivityListener.onStop();
 		}
 	}
 	
 	public void onDestroy(){
-		UBLogUtil.logI(TAG+" onDestory");
+		UBLogUtil.logI(TAG+"----->onDestory");
 		if (mUBActivityListener!=null) {
 			mUBActivityListener.onDestroy();
 		}
 	}
 	
 	public void onNewIntent(Intent intent){
-		UBLogUtil.logI(TAG+" onNewIntent");
+		UBLogUtil.logI(TAG+"----->onNewIntent");
 		if (mUBActivityListener!=null) {
 			mUBActivityListener.onNewIntent(intent);
 		}
 	}
 	
 	public void onBackPressed(){
-		UBLogUtil.logI(TAG+" onBackPressed");
+		UBLogUtil.logI(TAG+"----->onBackPressed");
 		if (mUBActivityListener!=null) {
 			mUBActivityListener.onBackPressed();
 		}
 	}
 	
 	public void onConfigurationChanged(Configuration newConfig){
-		UBLogUtil.logI(TAG+" onConfigurationChanged");
+		UBLogUtil.logI(TAG+"----->onConfigurationChanged");
 		if (mUBActivityListener!=null) {
 			mUBActivityListener.onConfigurationChanged(newConfig);
 		}
 	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data){
-		UBLogUtil.logI(TAG+" onActivityResult");
+		UBLogUtil.logI(TAG+"----->onActivityResult");
 		if (mUBActivityListener!=null) {
 			mUBActivityListener.onActivityResult(requestCode,resultCode,data);
 		}
@@ -250,22 +250,22 @@ public class UBSDK {
 	
 //	TODO**************************other*************************
 	public void getUserInfo(){
-		UBLogUtil.logI(TAG+" getUserInfo");
+		UBLogUtil.logI(TAG+"----->getUserInfo");
 		UBUser.getInstance().getUserInfo();
 	}
 	
 	public int getPlatformId(){
-		UBLogUtil.logI(TAG+" getPlatformId");
+		UBLogUtil.logI(TAG+"----->getPlatformId");
 		return UBSetting.getInstance().getPlatformId();
 	}
 	
 	public int getSubPlatformId(){
-		UBLogUtil.logI(TAG+" getSubPlatformId");
+		UBLogUtil.logI(TAG+"----->getSubPlatformId");
 		return UBSetting.getInstance().getSubPlatformId();
 	}
 	
 	public String getExtrasConfig(String extras){
-		UBLogUtil.logI(TAG+" getExtrasConfig");
+		UBLogUtil.logI(TAG+"----->getExtrasConfig");
 		return UBSetting.getInstance().getExtrasConfig(extras);
 	}
 	
@@ -275,7 +275,7 @@ public class UBSDK {
 	 * @return
 	 */
 	public boolean isFunctionSupported(int functionName){
-		UBLogUtil.logI(TAG+" isFunctionSupported");
+		UBLogUtil.logI(TAG+"----->isFunctionSupported");
 		return UBSetting.getInstance().isFunctionSupported(functionName);
 	}
 	
@@ -285,7 +285,7 @@ public class UBSDK {
 	 * @return
 	 */
 	public String callFunction(int functionName){
-		UBLogUtil.logI(TAG+" callFunction");
+		UBLogUtil.logI(TAG+"----->callFunction");
 		return UBSetting.getInstance().callFunction(functionName);
 	}
 	
@@ -295,7 +295,7 @@ public class UBSDK {
 	 * @param dataType 
 	 */
 	public void setGameDataInfo(Object obj,int dataType){
-		UBLogUtil.logI(TAG+" setGameDataInfo");
+		UBLogUtil.logI(TAG+"----->setGameDataInfo");
 		UBUser.getInstance().setGameDataInfo(obj, dataType);
 	}
 	
@@ -304,6 +304,7 @@ public class UBSDK {
 	 */
     public void showExitDialog()
     {
+		UBLogUtil.logI(TAG+"----->showExitDialog");
     	UBDialog.showExitDialog(mActivity);
     }
 }

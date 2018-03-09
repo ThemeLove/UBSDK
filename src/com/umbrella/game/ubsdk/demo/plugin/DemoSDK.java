@@ -14,7 +14,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 
 public class DemoSDK {
-	private final String TAG=getClass().getSimpleName();
+	private final String TAG=DemoSDK.class.getSimpleName();
 	private static DemoSDK instance;
 	private DemoSDK(){}
 	public static DemoSDK getInstance(){
@@ -31,6 +31,7 @@ public class DemoSDK {
 	private Activity mActivity;
 	
 	public void init(){
+		UBLogUtil.logI(TAG+"----->init");
 		mActivity=UBSDKConfig.getInstance().getGameActivity();
 		UBSDK.getInstance().setUBActivityListener(new UBActivityListenerImpl(){
 			@Override
@@ -44,6 +45,7 @@ public class DemoSDK {
 	}
 	
 	public void logout(){
+		UBLogUtil.logI(TAG+"----->logout");
 		UBDialog.showNormalDialog(mActivity, "logout", "Simulate store logout", "success", new DialogInterface.OnClickListener() {
 			
 			@Override
@@ -68,11 +70,12 @@ public class DemoSDK {
 	}
 	
 	public void gamePause(){
+		UBLogUtil.logI(TAG+"----->gamePause");
 		UBSDK.getInstance().getUBGamePauseCallback().onGamePause();
-		UBLogUtil.logI(TAG,"gamePause");
 	}
 	
 	public void exit(){
+		UBLogUtil.logI(TAG+"----->exit");
 		UBDialog.showNormalDialog(mActivity, "exit the game", "Are you sure you want to quit?", "exit", new DialogInterface.OnClickListener() {
 			
 			@Override
@@ -98,10 +101,12 @@ public class DemoSDK {
 	
 	private UBUserInfo mUBUserInfo;
 	public UBUserInfo getUserInfo(){
+		UBLogUtil.logI(TAG+"----->getUserInfo");
 		return mUBUserInfo;
 	}
 	
 	public void login(){
+		UBLogUtil.logI(TAG+"----->login");
 		UBDialog.showNormalDialog(mActivity, "login", "Simulate store login", "success",new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -135,6 +140,7 @@ public class DemoSDK {
 	}
 	
 	public void pay(final UBRoleInfo ubRoleInfo,final UBOrderInfo ubOrderInfo){
+		UBLogUtil.logI(TAG+"----->pay");
 		UBDialog.showNormalDialog(mActivity, "pay", "Simulate store payment", "success", new DialogInterface.OnClickListener() {
 			
 			@Override
@@ -161,15 +167,16 @@ public class DemoSDK {
 	}
 	
 	public void setGameDataInfo(Object obj,int dataType){
+		
 		switch (dataType) {
 		case DataType.CREATE_ROLE:
-			UBLogUtil.logI(TAG, "create_role");
+			UBLogUtil.logI(TAG+"----->create_role");
 			break;
 		case DataType.ENTER_GAME:
-			UBLogUtil.logI(TAG, "enter_game");
+			UBLogUtil.logI(TAG+"----->enter_game");
 			break;
 		case DataType.LEVEL_UP:
-			UBLogUtil.logI(TAG, "level_up");
+			UBLogUtil.logI(TAG+"----->level_up");
 			break;
 		default:
 			break;

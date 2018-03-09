@@ -9,6 +9,7 @@ import com.umbrella.game.ubsdk.config.UBSDKConfig;
 import com.umbrella.game.ubsdk.factory.ApplicationFactory;
 import com.umbrella.game.ubsdk.listener.IChannelProxyApplication;
 import com.umbrella.game.ubsdk.utils.AssetUtil;
+import com.umbrella.game.ubsdk.utils.TextUtil;
 
 import android.util.Xml;
 
@@ -34,13 +35,17 @@ public class UBConfigModel {
 	 * 从Asset目录下初始化UBSDK配置
 	 * @param isEncrypt
 	 */
-	public void initUBSDKConfig(boolean isEncrypt){
+	public boolean initUBSDKConfig(boolean isEncrypt){
+		boolean isSuccess=false;
+		
 		String configStr="";
 		if (isEncrypt) {
 			configStr=AssetUtil.getAssetDESConfigStr(UBSDKConfig.getInstance().getApplicationContext(),UBSDKConfig.UBSDK_CONFIG_FILENAME);
 		}else{
 			configStr=AssetUtil.getAssetConfigStr(UBSDKConfig.getInstance().getApplicationContext(),UBSDKConfig.UBSDK_CONFIG_FILENAME);
 		}
+		if (TextUtil.isEmpty(configStr)) isSuccess=false;
+		
 		XmlPullParser parse = Xml.newPullParser();
 		try {
 			parse.setInput(new StringReader(configStr));
@@ -52,21 +57,25 @@ public class UBConfigModel {
 					if ("param".equalsIgnoreCase(name)) {
 						String key = parse.getAttributeValue(null,"name");
 						String value = parse.getAttributeValue(null,"value");
-						if ("MAIN_ACTIVITY_NAME".equalsIgnoreCase(key)) {
-							UBSDKConfig.getInstance().getUBGame().setMainActivityName(value);
-						}else if("UB_GAMEID".equalsIgnoreCase(key)){
+						if (UBSDKConfig.UB_GameID.equalsIgnoreCase(key)) {
 							UBSDKConfig.getInstance().getUBGame().setUbGameID(value);
-						}else if("UB_PLATFORMID".equalsIgnoreCase(key)){
-							UBSDKConfig.getInstance().getUBChannel().setUbPlatformId(value);
-						}else if("UB_SUBPLATFORMID".equalsIgnoreCase(key)){
-							UBSDKConfig.getInstance().getUBChannel().setUbSubPlatformId(value);
-						}else if ("UB_CHANNELID".equalsIgnoreCase(key)) {
-							UBSDKConfig.getInstance().getUBChannel().setUbChannelId(value);
-						}else if ("UB_SUBCHANNELID".equalsIgnoreCase(key)) {
-							UBSDKConfig.getInstance().getUBChannel().setSubChannelId(value);
-						}else if ("UB_GAME_DEBUG".equalsIgnoreCase(key)) {
+						}else if (UBSDKConfig.UB_GameDebug.equalsIgnoreCase(key)) {
 							boolean debugMode="true".equalsIgnoreCase(value)?true:false;
 							UBSDKConfig.getInstance().getUBGame().setDebugMode(debugMode);
+						}else if (UBSDKConfig.UB_GameOrientation.equalsIgnoreCase(key)) {
+							UBSDKConfig.getInstance().getUBGame().setOrientation(value);
+						}else if (UBSDKConfig.UB_GameMainActivityName.equalsIgnoreCase(key)) {
+							UBSDKConfig.getInstance().getUBGame().setMainActivityName(value);
+						}
+						
+						else if(UBSDKConfig.UB_PlatformID.equalsIgnoreCase(key)){
+							UBSDKConfig.getInstance().getUBChannel().setUbPlatformID(value);
+						}else if(UBSDKConfig.UB_SubPlatformID.equalsIgnoreCase(key)){
+							UBSDKConfig.getInstance().getUBChannel().setUbSubPlatformID(value);
+						}else if (UBSDKConfig.UB_ChannelID.equalsIgnoreCase(key)) {
+							UBSDKConfig.getInstance().getUBChannel().setUbChannelID(value);
+						}else if (UBSDKConfig.UB_SubChannelID.equalsIgnoreCase(key)) {
+							UBSDKConfig.getInstance().getUBChannel().setSubChannelID(value);
 						}else{
 							UBSDKConfig.getInstance().getParamsMap().put(key, value);
 						}
@@ -81,6 +90,8 @@ public class UBConfigModel {
 						String pluginName = parse.getAttributeValue(null, "name");
 						int pluginType = Integer.parseInt(parse.getAttributeValue(null,"type"));
 						UBSDKConfig.getInstance().getPluginMap().put(pluginType, pluginName);
+						
+						isSuccess=true;//这里是解析到右插件标签标示为解析成功
 					}
 					break;
 				default:
@@ -92,6 +103,7 @@ public class UBConfigModel {
 			e.printStackTrace();
 		}
 		
+		return isSuccess;
 	}
 	
 	/**

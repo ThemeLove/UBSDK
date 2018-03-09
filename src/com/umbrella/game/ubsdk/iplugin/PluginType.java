@@ -1,6 +1,7 @@
 package com.umbrella.game.ubsdk.iplugin;
 
 public enum PluginType {
+	PLUGIN_TYPE_INIT(0,"init"),
 	PLUGIN_TYPE_USER(1,"user"),
 	PLUGIN_TYPE_PAY(2,"pay"),
 	PLUGIN_TYPE_SETTING(3,"setting");

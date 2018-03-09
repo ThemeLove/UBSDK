@@ -1,33 +1,33 @@
 package com.umbrella.game.ubsdk.config;
 
 public class UBChannel {
-	private String ubPlatformId;
-	private String ubSubPlatformId;
-	private String ubChannelId;
-	private String subChannelId;
-	public String getUbPlatformId() {
-		return ubPlatformId;
+	private String ubPlatformID;
+	private String ubSubPlatformID;
+	private String ubChannelID;
+	private String subChannelID;
+	public String getUbPlatformID() {
+		return ubPlatformID;
 	}
-	public void setUbPlatformId(String ubPlatformId) {
-		this.ubPlatformId = ubPlatformId;
+	public void setUbPlatformID(String ubPlatformID) {
+		this.ubPlatformID = ubPlatformID;
 	}
-	public String getUbSubPlatformId() {
-		return ubSubPlatformId;
+	public String getUbSubPlatformID() {
+		return ubSubPlatformID;
 	}
-	public void setUbSubPlatformId(String ubSubPlatformId) {
-		this.ubSubPlatformId = ubSubPlatformId;
+	public void setUbSubPlatformID(String ubSubPlatformID) {
+		this.ubSubPlatformID = ubSubPlatformID;
 	}
-	public String getUbChannelId() {
-		return ubChannelId;
+	public String getUbChannelID() {
+		return ubChannelID;
 	}
-	public void setUbChannelId(String ubChannelId) {
-		this.ubChannelId = ubChannelId;
+	public void setUbChannelID(String ubChannelID) {
+		this.ubChannelID = ubChannelID;
 	}
-	public String getSubChannelId() {
-		return subChannelId;
+	public String getSubChannelID() {
+		return subChannelID;
 	}
-	public void setSubChannelId(String subChannelId) {
-		this.subChannelId = subChannelId;
+	public void setSubChannelID(String subChannelID) {
+		this.subChannelID = subChannelID;
 	}
 	
 }
