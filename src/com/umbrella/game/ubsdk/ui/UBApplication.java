@@ -24,12 +24,13 @@ public class UBApplication extends Application{
 	@Override
 	protected void attachBaseContext(Context base) {
 		super.attachBaseContext(base);
-//		添加MuliDex分包支持
+		
+//		添加MuliDex分包支持,单机游戏比较小，可以不添加MulDex支持
 		MultiDex.install(this);
 		
 		UBSDKConfig.getInstance().setApplicationContext(this);
 //		TODO 这个地方控制解析加密、不加密文件的flag
-		boolean isInitUBSDKConfigSuccess = UBConfigModel.getInstance().initUBSDKConfig(false);
+		boolean isInitUBSDKConfigSuccess = UBConfigModel.getInstance().initUBSDKConfig(true);
 		if (!isInitUBSDKConfigSuccess) {
 			UBLogUtil.logW(TAG+"----->waring!!!!!----->load the config file may be fail...");
 			UBLogUtil.logW(TAG+"----->waring!!!!!----->init with the demo plugins...");
