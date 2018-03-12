@@ -71,7 +71,14 @@ public class UBUser implements IUBUserPlugin{
 				}
 			});
 		}else{
-			UBLogUtil.logE(TAG+"----->no instance of userPlugin");
+			UBSDK.getInstance().runOnUIThread(new Runnable() {
+				
+				@Override
+				public void run() {
+					UBLogUtil.logE(TAG+"----->no instance of userPlugin");
+					UBSDK.getInstance().getUBLogoutCallback().onFailed("no instance of userPlugin", null);
+				}
+			});
 		} 
 	}
 

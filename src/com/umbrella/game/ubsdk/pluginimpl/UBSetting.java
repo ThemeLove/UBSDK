@@ -47,7 +47,14 @@ public class UBSetting implements IUBSettingPlugin{
 				}
 			});
 		}else{
-			UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
+			UBSDK.getInstance().runOnUIThread(new Runnable() {
+				
+				@Override
+				public void run() {
+					UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
+					UBSDK.getInstance().getUBGamePauseCallback().onFail("no instance of settingPlugin");
+				}
+			});
 		}
 	}
 
@@ -63,7 +70,15 @@ public class UBSetting implements IUBSettingPlugin{
 				}
 			});
 		}else{
-			UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
+			UBSDK.getInstance().runOnUIThread(new Runnable() {
+				
+				@Override
+				public void run() {
+					UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
+					UBSDK.getInstance().getUBExitCallback().onCancel("no instance of settingPlugin",null);
+				}
+			});
+			
 		}
 	}
 
