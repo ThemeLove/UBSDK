@@ -29,7 +29,7 @@ public class UBApplication extends Application{
 		
 		UBSDKConfig.getInstance().setApplicationContext(this);
 //		TODO 这个地方控制解析加密、不加密文件的flag
-		boolean isInitUBSDKConfigSuccess = UBConfigModel.getInstance().initUBSDKConfig(true);
+		boolean isInitUBSDKConfigSuccess = UBConfigModel.getInstance().initUBSDKConfig(false);
 		if (!isInitUBSDKConfigSuccess) {
 			UBLogUtil.logW(TAG+"----->waring!!!!!----->load the config file may be fail...");
 			UBLogUtil.logW(TAG+"----->waring!!!!!----->init with the demo plugins...");
