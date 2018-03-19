@@ -8,5 +8,5 @@ public interface UBGamePauseCallback {
 	/**
 	 * 游戏暂停失败，一般不用关注改回调
 	 */
-	void onFail(String msg);
+	void onFailed(String msg);
 }

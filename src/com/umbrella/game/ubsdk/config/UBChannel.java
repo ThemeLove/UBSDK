@@ -2,6 +2,7 @@ package com.umbrella.game.ubsdk.config;
 
 public class UBChannel {
 	private String ubPlatformID;
+	private String ubPlatformName;
 	private String ubSubPlatformID;
 	private String ubChannelID;
 	private String subChannelID;
@@ -10,6 +11,12 @@ public class UBChannel {
 	}
 	public void setUbPlatformID(String ubPlatformID) {
 		this.ubPlatformID = ubPlatformID;
+	}
+	public String getUbPlatformName() {
+		return ubPlatformName;
+	}
+	public void setUbPlatformName(String ubPlatformName) {
+		this.ubPlatformName = ubPlatformName;
 	}
 	public String getUbSubPlatformID() {
 		return ubSubPlatformID;

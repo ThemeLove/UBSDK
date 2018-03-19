@@ -22,8 +22,8 @@ public class DemoSettingPlugin implements IUBSettingPlugin{
 	
 
 	@Override
-	public int getPlatformId() {
-		UBLogUtil.logI(TAG+"----->getPlatformId");
+	public int getPlatformID() {
+		UBLogUtil.logI(TAG+"----->getPlatformID");
 		
 		int platform=-1;
 		try {
@@ -37,10 +37,24 @@ public class DemoSettingPlugin implements IUBSettingPlugin{
 		}
 		return platform;
 	}
+	
+	@Override
+	public String getPlatformName() {
+		UBLogUtil.logI(TAG+"----->getPlatformName");
+		
+		String platformName="demo";
+		try {
+			platformName = UBSDKConfig.getInstance().getParamsMap().get(UBSDKConfig.UB_PlatformName);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return platformName;
+		}
+		return platformName;
+	}
 
 	@Override
-	public int getSubPlatformId() {
-		UBLogUtil.logI(TAG+"----->getSubPlatformId");
+	public int getSubPlatformID() {
+		UBLogUtil.logI(TAG+"----->getSubPlatformID");
 		
 		int subPlatform=-1;
 		try {
