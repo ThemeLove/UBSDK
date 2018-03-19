@@ -15,14 +15,22 @@ public interface IUBSettingPlugin {
     
     public void exit();
     
-    public int getPlatformId();
+    public int getPlatformID();
     
-    public int getSubPlatformId();
+    /**
+     * 获取激活平台名字的英文缩写 比如baidu、vivo
+     * @return
+     */
+    public String getPlatformName();
+    
+    public int getSubPlatformID();
     
     public String getExtrasConfig(String extras);
     
     public boolean isFunctionSupported(int functionName);
     
     public String callFunction(int functionName);
+    
+    
     
 }

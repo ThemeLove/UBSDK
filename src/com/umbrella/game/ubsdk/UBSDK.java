@@ -254,14 +254,19 @@ public class UBSDK {
 		UBUser.getInstance().getUserInfo();
 	}
 	
-	public int getPlatformId(){
-		UBLogUtil.logI(TAG+"----->getPlatformId");
-		return UBSetting.getInstance().getPlatformId();
+	public int getPlatformID(){
+		UBLogUtil.logI(TAG+"----->getPlatformID");
+		return UBSetting.getInstance().getPlatformID();
 	}
 	
-	public int getSubPlatformId(){
-		UBLogUtil.logI(TAG+"----->getSubPlatformId");
-		return UBSetting.getInstance().getSubPlatformId();
+	public String getPlatformName(){
+		UBLogUtil.logI(TAG+"----->getPlatformName");
+		return UBSetting.getInstance().getPlatformName();
+	}
+	
+	public int getSubPlatformID(){
+		UBLogUtil.logI(TAG+"----->getSubPlatformID");
+		return UBSetting.getInstance().getSubPlatformID();
 	}
 	
 	public String getExtrasConfig(String extras){

@@ -20,6 +20,7 @@ public class UBSDKConfig {
     public static final String UB_GameMainActivityName="UB_GameMainActivityName";
     
     public static final String UB_PlatformID="UB_PlatformID";
+    public static final String UB_PlatformName="UB_PlatformName";
     public static final String UB_SubPlatformID="UB_SubPlarformID";
     public static final String UB_ChannelID="UB_ChannelID";
     public static final String UB_SubChannelID="UB_SubChannelID";

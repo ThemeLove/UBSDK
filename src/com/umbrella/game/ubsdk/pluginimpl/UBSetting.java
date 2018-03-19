@@ -52,7 +52,7 @@ public class UBSetting implements IUBSettingPlugin{
 				@Override
 				public void run() {
 					UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
-					UBSDK.getInstance().getUBGamePauseCallback().onFail("no instance of settingPlugin");
+					UBSDK.getInstance().getUBGamePauseCallback().onFailed("no instance of settingPlugin");
 				}
 			});
 		}
@@ -83,11 +83,11 @@ public class UBSetting implements IUBSettingPlugin{
 	}
 
 	@Override
-	public int getPlatformId() {
+	public int getPlatformID() {
 		UBLogUtil.logI(TAG+"----->getPlatformId");
 		int platformId=-1;
 		if (mUBSettingPlugin!=null) {
-			platformId=mUBSettingPlugin.getPlatformId();
+			platformId=mUBSettingPlugin.getPlatformID();
 		}else{
 			UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
 		}
@@ -95,11 +95,11 @@ public class UBSetting implements IUBSettingPlugin{
 	}
 
 	@Override
-	public int getSubPlatformId() {
+	public int getSubPlatformID() {
 		UBLogUtil.logI(TAG+"----->getSubPlatformId");
 		int subPlatformId=-1;
 		if (mUBSettingPlugin!=null) {
-			subPlatformId=mUBSettingPlugin.getSubPlatformId();
+			subPlatformId=mUBSettingPlugin.getSubPlatformID();
 		}else{
 			UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
 		}
@@ -140,6 +140,17 @@ public class UBSetting implements IUBSettingPlugin{
 			UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
 		}
 		return result;
+	}
+	@Override
+	public String getPlatformName() {
+		UBLogUtil.logI(TAG+"----->getPlatformName");
+		String subPlatformName="";
+		if (mUBSettingPlugin!=null) {
+			subPlatformName=mUBSettingPlugin.getPlatformName();
+		}else{
+			UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
+		}
+		return subPlatformName;
 	}
 
 }
