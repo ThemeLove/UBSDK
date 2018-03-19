@@ -70,6 +70,8 @@ public class UBConfigModel {
 						
 						else if(UBSDKConfig.UB_PlatformID.equalsIgnoreCase(key)){
 							UBSDKConfig.getInstance().getUBChannel().setUbPlatformID(value);
+						}else if(UBSDKConfig.UB_PlatformName.equalsIgnoreCase(key)){
+							UBSDKConfig.getInstance().getUBChannel().setUbPlatformName(value);
 						}else if(UBSDKConfig.UB_SubPlatformID.equalsIgnoreCase(key)){
 							UBSDKConfig.getInstance().getUBChannel().setUbSubPlatformID(value);
 						}else if (UBSDKConfig.UB_ChannelID.equalsIgnoreCase(key)) {
