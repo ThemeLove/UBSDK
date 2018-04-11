@@ -30,7 +30,7 @@ import android.text.TextUtils;
 public class NetworkUtils
 {
 
-    private static final String TAG = "VasSDK-NetworkUtils";
+    private static final String TAG ="UBSDK-"+NetworkUtils.class.getSimpleName();
 
     /**
      * Returns whether the network is available
