@@ -11,7 +11,6 @@ import com.umbrella.game.ubsdk.callback.UBPayCallback;
 import com.umbrella.game.ubsdk.callback.UBSwitchAccountCallback;
 import com.umbrella.game.ubsdk.config.UBSDKConfig;
 import com.umbrella.game.ubsdk.listener.UBActivityListener;
-import com.umbrella.game.ubsdk.pluginimpl.UBInit;
 import com.umbrella.game.ubsdk.pluginimpl.UBPay;
 import com.umbrella.game.ubsdk.pluginimpl.UBSetting;
 import com.umbrella.game.ubsdk.pluginimpl.UBUser;
@@ -85,7 +84,9 @@ public class UBSDK {
 			
 			@Override
 			public void run() {
-				UBInit.getInstance().initChannel();
+				UBUser.getInstance().init();
+				UBPay.getInstance().init();
+				UBSetting.getInstance().init();
 			}
 		});
 	}

@@ -102,4 +102,13 @@ public class UBUser implements IUBUserPlugin{
 			UBLogUtil.logE(TAG+"----->no instance of userPlugin");
 		}
 	}
+	
+	@Override
+	public boolean isSupportMethod(final String methodName) {
+		UBLogUtil.logI(TAG+"----->isSupportMethod");
+		if (mUBUserPlugin!=null) {
+			return mUBUserPlugin.isSupportMethod(methodName);
+		}
+		return false;
+	}
 }

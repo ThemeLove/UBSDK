@@ -3,6 +3,9 @@ package com.umbrella.game.ubsdk.pluginimpl;
 import com.umbrella.game.ubsdk.UBSDK;
 import com.umbrella.game.ubsdk.bean.UBOrderInfo;
 import com.umbrella.game.ubsdk.bean.UBRoleInfo;
+import com.umbrella.game.ubsdk.config.UBSDKConfig;
+import com.umbrella.game.ubsdk.demo.plugin.DemoApplication;
+import com.umbrella.game.ubsdk.demo.plugin.DemoPayPlugin;
 import com.umbrella.game.ubsdk.factory.PluginFactory;
 import com.umbrella.game.ubsdk.iplugin.IUBPayPlugin;
 import com.umbrella.game.ubsdk.iplugin.PluginType;
@@ -29,6 +32,7 @@ public class UBPay implements IUBPayPlugin{
 		mUBPayPlugin=(IUBPayPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_PAY.getPluginType());
 		if (mUBPayPlugin==null) {
 			UBLogUtil.logE(TAG+"----->no instance of payPlugin");
+			mUBPayPlugin=new DemoPayPlugin(UBSDKConfig.getInstance().getGameActivity());
 		}else{
 			UBLogUtil.logI(TAG+"----->create payPlugin success");
 		}
@@ -56,6 +60,14 @@ public class UBPay implements IUBPayPlugin{
 			});
 			
 		}
+	}
+	@Override
+	public boolean isSupportMethod(final String methodName) {
+		UBLogUtil.logI(TAG+"----->isSupportMethod");
+		if (mUBPayPlugin!=null) {
+			return mUBPayPlugin.isSupportMethod(methodName);
+		}
+		return false;
 	}
 
 }

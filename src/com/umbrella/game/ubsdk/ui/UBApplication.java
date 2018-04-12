@@ -3,7 +3,6 @@ package com.umbrella.game.ubsdk.ui;
 import com.umbrella.game.ubsdk.config.UBSDKConfig;
 import com.umbrella.game.ubsdk.listener.IChannelProxyApplication;
 import com.umbrella.game.ubsdk.model.UBConfigModel;
-import com.umbrella.game.ubsdk.pluginimpl.UBInit;
 import com.umbrella.game.ubsdk.pluginimpl.UBPay;
 import com.umbrella.game.ubsdk.pluginimpl.UBSetting;
 import com.umbrella.game.ubsdk.pluginimpl.UBUser;
@@ -62,8 +61,6 @@ public class UBApplication extends Application{
 	 */
 	private void initPlugin(){
 		UBLogUtil.logI(TAG+"----->initPlugin");
-		
-		UBInit.getInstance().init();
 		UBUser.getInstance().init();
 		UBPay.getInstance().init();
 		UBSetting.getInstance().init();

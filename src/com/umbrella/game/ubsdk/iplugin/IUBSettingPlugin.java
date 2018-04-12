@@ -1,6 +1,6 @@
 package com.umbrella.game.ubsdk.iplugin;
 
-public interface IUBSettingPlugin {
+public interface IUBSettingPlugin extends IUBPlugin{
     
 //    public void setDebug(boolean debug);
     

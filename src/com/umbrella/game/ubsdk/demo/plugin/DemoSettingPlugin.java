@@ -1,5 +1,7 @@
 package com.umbrella.game.ubsdk.demo.plugin;
 
+import java.lang.reflect.Method;
+
 import com.umbrella.game.ubsdk.config.UBSDKConfig;
 import com.umbrella.game.ubsdk.iplugin.IUBSettingPlugin;
 import com.umbrella.game.ubsdk.utils.TextUtil;
@@ -92,5 +94,19 @@ public class DemoSettingPlugin implements IUBSettingPlugin{
 	public void gamePause() {
 		UBLogUtil.logI(TAG+"----->gamePause");
 		DemoSDK.getInstance().gamePause();
+	}
+	
+	@Override
+	public boolean isSupportMethod(String methodName) {
+        UBLogUtil.logI(TAG+"----->isSupportMethod");
+        Method[] methods = DemoSettingPlugin.class.getMethods();
+        for(int i = 0; i<methods.length; i++)
+        {
+            if(methods[i].getName().equals(methodName))
+            {
+                return true;
+            }
+        }
+		return false;
 	}
 }

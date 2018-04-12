@@ -153,4 +153,12 @@ public class UBSetting implements IUBSettingPlugin{
 		return subPlatformName;
 	}
 
+	@Override
+	public boolean isSupportMethod(final String methodName) {
+		UBLogUtil.logI(TAG+"----->isSupportMethod");
+		if (mUBSettingPlugin!=null) {
+			return mUBSettingPlugin.isSupportMethod(methodName);
+		}
+		return false;
+	}
 }

@@ -45,7 +45,7 @@ public class UBSDKConfig {
 		return applicationList;
 	}
 	
-	public SparseArray<String> getPluginMap(){
+	public SparseArray<String> getPluginMap( ){
 		return pluginMap;
 	}
 	
