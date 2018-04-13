@@ -97,16 +97,42 @@ public class DemoSettingPlugin implements IUBSettingPlugin{
 	}
 	
 	@Override
-	public boolean isSupportMethod(String methodName) {
+	public boolean isSupportMethod(String methodName,Object[] args) {
         UBLogUtil.logI(TAG+"----->isSupportMethod");
-        Method[] methods = DemoSettingPlugin.class.getMethods();
-        for(int i = 0; i<methods.length; i++)
-        {
-            if(methods[i].getName().equals(methodName))
-            {
-                return true;
-            }
-        }
+        Class<?> [] parameterTypes=null;
+        if (args!=null&&args.length>0) {
+        	parameterTypes=new Class<?>[args.length];
+			for(int i=0;i<args.length;i++){
+				parameterTypes[i]=args[i].getClass();
+			}
+		}
+        
+        try {
+			Method method = getClass().getMethod(methodName, parameterTypes);
+			return method==null?false:true;
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		}
 		return false;
+	}
+
+	@Override
+	public Object callMethod(String methodName, Object[] args) {
+		UBLogUtil.logI(TAG+"----->callMethod");
+		Class<?>[] paramterTypes=null;
+		if (args!=null&&args.length>0) {
+			paramterTypes=new Class<?>[args.length];
+			for (int i=0;i<args.length;i++) {
+				paramterTypes[i]=args[i].getClass();
+			}
+		}
+		
+		try {
+			Method method = getClass().getMethod(methodName, paramterTypes);
+			return method.invoke(this, args);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

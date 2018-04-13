@@ -56,6 +56,20 @@ public class UBApplication extends Application{
 		if (channelProxyApplication!=null) channelProxyApplication.onProxyConfigurationChanged(this, newConfig);
 	}
 	
+	
+	
+	@Override
+	public void onTrimMemory(int level) {
+		// TODO Auto-generated method stub
+		super.onTrimMemory(level);
+	}
+	
+	@Override
+	public void onTerminate() {
+		// TODO Auto-generated method stub
+		super.onTerminate();
+	}
+	
 	/**
 	 * 仅仅实例化插件，并不调用插件里的任何方法
 	 */

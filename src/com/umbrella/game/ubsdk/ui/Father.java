@@ -1,33 +1,20 @@
-package com.umbrella.game.ubsdk.demo.plugin;
+package com.umbrella.game.ubsdk.ui;
 
 import java.lang.reflect.Method;
 
-import com.umbrella.game.ubsdk.bean.UBOrderInfo;
-import com.umbrella.game.ubsdk.bean.UBRoleInfo;
-import com.umbrella.game.ubsdk.iplugin.IUBPayPlugin;
-import com.umbrella.game.ubsdk.utils.UBLogUtil;
-
-import android.app.Activity;
-
-public class DemoPayPlugin implements IUBPayPlugin{
-	private final String TAG=DemoPayPlugin.class.getSimpleName();
-	private Activity mActivity;
-	public DemoPayPlugin(Activity activity){
-		this.mActivity=activity;
+public class Father {
+	public static final String TAG=Father.class.getSimpleName();
+	
+	public void methodA(String str,Integer num){
+		System.out.println("xxx");
+		System.out.println("class="+getClass().getSimpleName()+",str="+str+",num="+num);
 	}
-
-	@Override
-	public void pay(UBRoleInfo ubRoleInfo, UBOrderInfo ubOrderInfo) {
-		UBLogUtil.logI(TAG+"----->pay");
-		DemoSDK.getInstance().pay(ubRoleInfo, ubOrderInfo);
-	}
-
-	@Override
+	
 	public boolean isSupportMethod(String methodName,Object[] args) {
-        UBLogUtil.logI(TAG+"----->isSupportMethod");
+		 System.out.println(TAG+"----->isSupportMethod");
         Class<?> [] parameterTypes=null;
         if (args!=null&&args.length>0) {
-        	parameterTypes=new Class<?>[args.length];
+        	parameterTypes=new Class<?>[]{ };
 			for(int i=0;i<args.length;i++){
 				parameterTypes[i]=args[i].getClass();
 			}
@@ -42,12 +29,11 @@ public class DemoPayPlugin implements IUBPayPlugin{
 		return false;
 	}
 
-	@Override
 	public Object callMethod(String methodName, Object[] args) {
-		UBLogUtil.logI(TAG+"----->callMethod");
+		 System.out.println(TAG+"----->callMethod");
 		Class<?>[] paramterTypes=null;
 		if (args!=null&&args.length>0) {
-			paramterTypes=new Class<?>[args.length];
+			paramterTypes=new Class<?>[]{};
 			for (int i=0;i<args.length;i++) {
 				paramterTypes[i]=args[i].getClass();
 			}

@@ -26,7 +26,7 @@ public class UBUser implements IUBUserPlugin{
 	
 	public void init(){
 		UBLogUtil.logI(TAG+"----->init");
-		mUBUserPlugin=(IUBUserPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_USER.getPluginType());
+		mUBUserPlugin=(IUBUserPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_USER);
 		if (mUBUserPlugin==null) {
 			UBLogUtil.logE(TAG+"----->no instance of userPlugin");
 		}else{
@@ -104,11 +104,20 @@ public class UBUser implements IUBUserPlugin{
 	}
 	
 	@Override
-	public boolean isSupportMethod(final String methodName) {
+	public boolean isSupportMethod(String methodName,Object[] args) {
 		UBLogUtil.logI(TAG+"----->isSupportMethod");
 		if (mUBUserPlugin!=null) {
-			return mUBUserPlugin.isSupportMethod(methodName);
+			return mUBUserPlugin.isSupportMethod(methodName,args);
 		}
 		return false;
+	}
+
+	@Override
+	public Object callMethod(String methodName, Object[] args) {
+		UBLogUtil.logI(TAG+"----->callMethod");
+		if (mUBUserPlugin!=null) {
+			return mUBUserPlugin.callMethod(methodName, args);
+		}
+		return null;
 	}
 }

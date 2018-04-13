@@ -3,14 +3,9 @@ package com.umbrella.game.ubsdk.factory;
 import java.lang.reflect.Constructor;
 
 import com.umbrella.game.ubsdk.config.UBSDKConfig;
-import com.umbrella.game.ubsdk.demo.plugin.DemoPayPlugin;
-import com.umbrella.game.ubsdk.demo.plugin.DemoSettingPlugin;
-import com.umbrella.game.ubsdk.demo.plugin.DemoUserPlugin;
-import com.umbrella.game.ubsdk.iplugin.PluginType;
 import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
 import android.app.Activity;
-import android.text.TextUtils;
 
 public class PluginFactory {
 	private static final String TAG=PluginFactory.class.getSimpleName();

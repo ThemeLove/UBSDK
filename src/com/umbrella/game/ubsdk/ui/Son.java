@@ -1,30 +1,17 @@
-package com.umbrella.game.ubsdk.demo.plugin;
+package com.umbrella.game.ubsdk.ui;
 
 import java.lang.reflect.Method;
 
-import com.umbrella.game.ubsdk.bean.UBOrderInfo;
-import com.umbrella.game.ubsdk.bean.UBRoleInfo;
-import com.umbrella.game.ubsdk.iplugin.IUBPayPlugin;
-import com.umbrella.game.ubsdk.utils.UBLogUtil;
-
-import android.app.Activity;
-
-public class DemoPayPlugin implements IUBPayPlugin{
-	private final String TAG=DemoPayPlugin.class.getSimpleName();
-	private Activity mActivity;
-	public DemoPayPlugin(Activity activity){
-		this.mActivity=activity;
-	}
-
+public class Son extends Father{
+	public static final String TAG=Son.class.getSimpleName();
 	@Override
-	public void pay(UBRoleInfo ubRoleInfo, UBOrderInfo ubOrderInfo) {
-		UBLogUtil.logI(TAG+"----->pay");
-		DemoSDK.getInstance().pay(ubRoleInfo, ubOrderInfo);
+	public void methodA(String str,Integer num) {
+		super.methodA(str,num);
 	}
-
+	
 	@Override
 	public boolean isSupportMethod(String methodName,Object[] args) {
-        UBLogUtil.logI(TAG+"----->isSupportMethod");
+        System.out.println(TAG+"----->isSupportMethod");
         Class<?> [] parameterTypes=null;
         if (args!=null&&args.length>0) {
         	parameterTypes=new Class<?>[args.length];
@@ -44,7 +31,7 @@ public class DemoPayPlugin implements IUBPayPlugin{
 
 	@Override
 	public Object callMethod(String methodName, Object[] args) {
-		UBLogUtil.logI(TAG+"----->callMethod");
+		 System.out.println(TAG+"----->callMethod");
 		Class<?>[] paramterTypes=null;
 		if (args!=null&&args.length>0) {
 			paramterTypes=new Class<?>[args.length];

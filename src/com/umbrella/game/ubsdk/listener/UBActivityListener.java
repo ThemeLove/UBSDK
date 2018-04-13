@@ -32,4 +32,6 @@ public interface UBActivityListener {
 	  public void onConfigurationChanged(Configuration newConfig);
 	  
 	  public void onActivityResult(int requestCode, int resultCode, Intent data);
+	  
+	  public void onRequestPermissionResult(int requestCode,String[] permissions, int[] grantResults);
 }

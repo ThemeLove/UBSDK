@@ -67,5 +67,10 @@ public class UBActivityListenerImpl implements UBActivityListener{
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		UBLogUtil.logI(TAG+"----->onActivityResult");
 	}
+
+	@Override
+	public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) {
+		UBLogUtil.logI(TAG+"----->onRequestPermissionResult");
+	}
 	
 }

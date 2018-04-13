@@ -26,7 +26,7 @@ public class UBSetting implements IUBSettingPlugin{
 	public void init(){
 		UBLogUtil.logI(TAG+"----->init");
 		
-		mUBSettingPlugin=(IUBSettingPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_SETTING.getPluginType());
+		mUBSettingPlugin=(IUBSettingPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_SETTING);
 
 		if (mUBSettingPlugin!=null) {
 			UBLogUtil.logI(TAG+"----->create settingPlugin success");
@@ -154,11 +154,20 @@ public class UBSetting implements IUBSettingPlugin{
 	}
 
 	@Override
-	public boolean isSupportMethod(final String methodName) {
+	public boolean isSupportMethod(String methodName,Object[] args) {
 		UBLogUtil.logI(TAG+"----->isSupportMethod");
 		if (mUBSettingPlugin!=null) {
-			return mUBSettingPlugin.isSupportMethod(methodName);
+			return mUBSettingPlugin.isSupportMethod(methodName,args);
 		}
 		return false;
+	}
+	
+	@Override
+	public Object callMethod(String methodName, Object[] args) {
+		UBLogUtil.logI(TAG+"----->callMethod");
+		if (mUBSettingPlugin!=null) {
+			return mUBSettingPlugin.callMethod(methodName, args);
+		}
+		return null;
 	}
 }
