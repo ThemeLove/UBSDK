@@ -12,7 +12,7 @@ import android.app.Activity;
 public class DemoSettingPlugin implements IUBSettingPlugin{
 	private final String TAG=DemoSettingPlugin.class.getSimpleName();
 	private Activity mActivity;
-	private DemoSettingPlugin(Activity activity){
+	public DemoSettingPlugin(Activity activity){
 		this.mActivity=activity;
 	}
 	
@@ -29,7 +29,7 @@ public class DemoSettingPlugin implements IUBSettingPlugin{
 		
 		int platform=-1;
 		try {
-			String platformIDStr = UBSDKConfig.getInstance().getParamsMap().get(UBSDKConfig.UB_PlatformID);
+			String platformIDStr = UBSDKConfig.getInstance().getParamMap().get(UBSDKConfig.UB_PlatformID);
 			if (!TextUtil.isEmpty(platformIDStr)) {
 				platform=Integer.valueOf(platformIDStr);
 			}
@@ -46,7 +46,7 @@ public class DemoSettingPlugin implements IUBSettingPlugin{
 		
 		String platformName="demo";
 		try {
-			platformName = UBSDKConfig.getInstance().getParamsMap().get(UBSDKConfig.UB_PlatformName);
+			platformName = UBSDKConfig.getInstance().getParamMap().get(UBSDKConfig.UB_PlatformName);
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			return platformName;
@@ -60,7 +60,7 @@ public class DemoSettingPlugin implements IUBSettingPlugin{
 		
 		int subPlatform=-1;
 		try {
-			String subPlatformIDStr = UBSDKConfig.getInstance().getParamsMap().get(UBSDKConfig.UB_SubPlatformID);
+			String subPlatformIDStr = UBSDKConfig.getInstance().getParamMap().get(UBSDKConfig.UB_SubPlatformID);
 			if (!TextUtil.isEmpty(subPlatformIDStr)) {
 				subPlatform=Integer.valueOf(subPlatformIDStr);
 			}
@@ -76,19 +76,6 @@ public class DemoSettingPlugin implements IUBSettingPlugin{
 		UBLogUtil.logI(TAG+"----->getExtrasConfig");
 		return null;
 	}
-
-	@Override
-	public boolean isFunctionSupported(int functionName) {
-		UBLogUtil.logI(TAG+"----->isFunctionSupported");
-		return false;
-	}
-
-	@Override
-	public String callFunction(int functionName) {
-		UBLogUtil.logI(TAG+"----->callFunction");
-		return null;
-	}
-
 
 	@Override
 	public void gamePause() {
@@ -108,7 +95,7 @@ public class DemoSettingPlugin implements IUBSettingPlugin{
 		}
         
         try {
-			Method method = getClass().getMethod(methodName, parameterTypes);
+			Method method = getClass().getDeclaredMethod(methodName, parameterTypes);
 			return method==null?false:true;
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
@@ -119,16 +106,16 @@ public class DemoSettingPlugin implements IUBSettingPlugin{
 	@Override
 	public Object callMethod(String methodName, Object[] args) {
 		UBLogUtil.logI(TAG+"----->callMethod");
-		Class<?>[] paramterTypes=null;
+		Class<?>[] parameterTypes=null;
 		if (args!=null&&args.length>0) {
-			paramterTypes=new Class<?>[args.length];
+			parameterTypes=new Class<?>[args.length];
 			for (int i=0;i<args.length;i++) {
-				paramterTypes[i]=args[i].getClass();
+				parameterTypes[i]=args[i].getClass();
 			}
 		}
 		
 		try {
-			Method method = getClass().getMethod(methodName, paramterTypes);
+			Method method = getClass().getDeclaredMethod(methodName, parameterTypes);
 			return method.invoke(this, args);
 		} catch (Exception e) {
 			e.printStackTrace();

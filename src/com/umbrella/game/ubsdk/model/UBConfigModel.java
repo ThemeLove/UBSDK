@@ -11,6 +11,10 @@ import com.umbrella.game.ubsdk.listener.IChannelProxyApplication;
 import com.umbrella.game.ubsdk.utils.AssetUtil;
 import com.umbrella.game.ubsdk.utils.TextUtil;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.util.Xml;
 
 /**
@@ -79,7 +83,7 @@ public class UBConfigModel {
 						}else if (UBSDKConfig.UB_SubChannelID.equalsIgnoreCase(key)) {
 							UBSDKConfig.getInstance().getUBChannel().setSubChannelID(value);
 						}else{
-							UBSDKConfig.getInstance().getParamsMap().put(key, value);
+							UBSDKConfig.getInstance().getParamMap().put(key, value);
 						}
 					}
 					
@@ -112,13 +116,32 @@ public class UBConfigModel {
 	 * 实例化渠道代理Application
 	 * @return
 	 */
-	public IChannelProxyApplication getUBProxyChannelApplication(){
-		IChannelProxyApplication application = null;
-		ArrayList<String> applicationList = UBSDKConfig.getInstance().getApplicationList(); 
-		if (applicationList!=null&&applicationList.size()>0) {
-			String applicationName = applicationList.get(0);
-			application=ApplicationFactory.getChannelProxyApplication(applicationName);
+	public ArrayList<IChannelProxyApplication> getUBProxyChannelApplicationList(){
+		ArrayList<IChannelProxyApplication> applicationList = new ArrayList<IChannelProxyApplication>();
+		ArrayList<String> applicationNameList = UBSDKConfig.getInstance().getApplicationList(); 
+		if (applicationNameList!=null&&applicationNameList.size()>0) {
+			for (String applicationName : applicationNameList) {
+				IChannelProxyApplication application=ApplicationFactory.getChannelProxyApplication(applicationName);
+				if (application!=null&&!applicationList.contains(application)) {
+					applicationList.add(application);
+				}
+			}
 		}
-		return application;
+		return applicationList;
+	}
+	
+	/**
+	 * 从AndroidManifest.xml中加载元数据
+	 * @param context
+	 */
+	public void loadMetaDataBundle(Context context){
+		try {
+			ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+			if (applicationInfo!=null&&applicationInfo.metaData!=null) {
+				UBSDKConfig.getInstance().getMetaDataBundle().putAll(applicationInfo.metaData);
+			}
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }

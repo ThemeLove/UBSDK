@@ -1,4 +1,4 @@
-package com.umbrella.game.ubsdk.bean;
+package com.umbrella.game.ubsdk.plugintype.user;
 
 public class UBRoleInfo {
 	private String serverID="0";		//服务器id

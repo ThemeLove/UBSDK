@@ -1,6 +1,6 @@
 package com.umbrella.game.ubsdk.callback;
 
-import com.umbrella.game.ubsdk.bean.UBUserInfo;
+import com.umbrella.game.ubsdk.plugintype.user.UBUserInfo;
 
 public interface UBLoginCallback {
 

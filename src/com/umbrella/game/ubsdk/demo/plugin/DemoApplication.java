@@ -12,17 +12,21 @@ public class DemoApplication implements IChannelProxyApplication{
 
 	@Override
 	public void onProxyCreate(Application application) {
-		UBLogUtil.logI(TAG, "onProxyCreate");
+		UBLogUtil.logI(TAG+"----->onProxyCreate");
 	}
 
 	@Override
 	public void onProxyAttachBaseContext(Application application, Context base) {
-		UBLogUtil.logI(TAG, "onProxyAttachBaseContext");
+		UBLogUtil.logI(TAG+"----->onProxyAttachBaseContext");
 	}
 
 	@Override
 	public void onProxyConfigurationChanged(Application application, Configuration config) {
-		UBLogUtil.logI(TAG, "onProxyConfigurationChanged");
+		UBLogUtil.logI(TAG+"----->onProxyConfigurationChanged");
 	}
-	
+
+	@Override
+	public void onTerminate() {
+		UBLogUtil.logI(TAG+"----->onTerminate");
+	}
 }

@@ -1,4 +1,4 @@
-package com.umbrella.game.ubsdk.bean;
+package com.umbrella.game.ubsdk.plugintype.user;
 
 public class UBUserInfo {
 	private String uid="";

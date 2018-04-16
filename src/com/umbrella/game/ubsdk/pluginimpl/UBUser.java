@@ -1,10 +1,12 @@
 package com.umbrella.game.ubsdk.pluginimpl;
 
 import com.umbrella.game.ubsdk.UBSDK;
-import com.umbrella.game.ubsdk.bean.UBUserInfo;
+import com.umbrella.game.ubsdk.config.UBSDKConfig;
+import com.umbrella.game.ubsdk.demo.plugin.DemoUserPlugin;
 import com.umbrella.game.ubsdk.factory.PluginFactory;
 import com.umbrella.game.ubsdk.iplugin.IUBUserPlugin;
 import com.umbrella.game.ubsdk.iplugin.PluginType;
+import com.umbrella.game.ubsdk.plugintype.user.UBUserInfo;
 import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
 public class UBUser implements IUBUserPlugin{
@@ -28,7 +30,8 @@ public class UBUser implements IUBUserPlugin{
 		UBLogUtil.logI(TAG+"----->init");
 		mUBUserPlugin=(IUBUserPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_USER);
 		if (mUBUserPlugin==null) {
-			UBLogUtil.logE(TAG+"----->no instance of userPlugin");
+			UBLogUtil.logE(TAG+"----->no instance of userPlugin ,instance DemoUserPlugin instead");
+			mUBUserPlugin=new DemoUserPlugin(UBSDKConfig.getInstance().getGameActivity());
 		}else{
 			UBLogUtil.logI(TAG+"----->create userPlugin success");
 		}

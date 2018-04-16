@@ -2,8 +2,6 @@ package com.umbrella.game.ubsdk;
 
 import java.util.ArrayList;
 
-import com.umbrella.game.ubsdk.bean.UBOrderInfo;
-import com.umbrella.game.ubsdk.bean.UBRoleInfo;
 import com.umbrella.game.ubsdk.callback.UBExitCallback;
 import com.umbrella.game.ubsdk.callback.UBGamePauseCallback;
 import com.umbrella.game.ubsdk.callback.UBInitCallback;
@@ -14,10 +12,14 @@ import com.umbrella.game.ubsdk.callback.UBSwitchAccountCallback;
 import com.umbrella.game.ubsdk.config.UBSDKConfig;
 import com.umbrella.game.ubsdk.iplugin.PluginType;
 import com.umbrella.game.ubsdk.listener.UBActivityListener;
+import com.umbrella.game.ubsdk.pluginimpl.UBAD;
 import com.umbrella.game.ubsdk.pluginimpl.UBPay;
 import com.umbrella.game.ubsdk.pluginimpl.UBSetting;
 import com.umbrella.game.ubsdk.pluginimpl.UBUser;
+import com.umbrella.game.ubsdk.plugintype.pay.UBOrderInfo;
+import com.umbrella.game.ubsdk.plugintype.user.UBRoleInfo;
 import com.umbrella.game.ubsdk.ui.UBDialog;
+import com.umbrella.game.ubsdk.utils.TextUtil;
 import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
 import android.app.Activity;
@@ -46,7 +48,6 @@ public class UBSDK {
 	}
 	
 	private Activity mActivity;
-	
 	
 //	TODO**************************setListener*************************	
 //	生命周期监听
@@ -89,6 +90,7 @@ public class UBSDK {
 				UBUser.getInstance().init();
 				UBPay.getInstance().init();
 				UBSetting.getInstance().init();
+				UBAD.getInstance().init();
 			}
 		});
 	}
@@ -329,12 +331,14 @@ public class UBSDK {
     
     /**
      * 是否支持该种类型的插件
-     * @param pluginType
+     * @param pluginType 
      * @return
      */
-    public boolean isSupportPlugin(int pluginType){
-    	return false;
-    }
+	public boolean isSupportPlugin(int pluginType){
+		UBLogUtil.logI(TAG+"----->isSupportPlugin");
+		String pluginName = UBSDKConfig.getInstance().getPluginMap().get(pluginType);
+		return !TextUtil.isEmpty(pluginName)?true:false;
+	}
     
     /**
      * 根据插件类型判断是否支持某方法
@@ -357,7 +361,7 @@ public class UBSDK {
 			isSupportMethod = UBSetting.getInstance().isSupportMethod(methodName, args);
 			break;
 		case PluginType.PLUGIN_TYPE_AD:
-			
+			isSupportMethod = UBAD.getInstance().isSupportMethod(methodName, args);
 			break;
 		case PluginType.PLUGIN_TYPE_PUSH:
 			
@@ -397,7 +401,7 @@ public class UBSDK {
 			obj = UBSetting.getInstance().callMethod(methodName, args);
 			break;
 		case PluginType.PLUGIN_TYPE_AD:
-			
+			obj = UBAD.getInstance().callMethod(methodName, args);
 			break;
 		case PluginType.PLUGIN_TYPE_PUSH:
 			

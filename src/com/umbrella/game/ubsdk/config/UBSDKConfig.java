@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.SparseArray;
 
 public class UBSDKConfig {
@@ -27,20 +28,31 @@ public class UBSDKConfig {
 	
 	private UBGame ubGame;
 	private UBChannel ubChannel;
-	private HashMap<String,String> paramsMap;
+	private HashMap<String,String> paramMap;//sdk配置参数集合
 	
-	private ArrayList<String> applicationList;
+	private Bundle metaDataBundle;//AndroidManifest.xml元数据集合
 	
-	private SparseArray<String> pluginMap;
+	private ArrayList<String> applicationList;//代理Application集合
+	
+	private SparseArray<String> pluginMap;//支持的plugin集合
 	
 	private UBSDKConfig(){
 		ubGame=new UBGame();
 		ubChannel=new UBChannel();
-		paramsMap=new HashMap<>();
+		paramMap=new HashMap<>();
+		metaDataBundle=new Bundle();
 		applicationList=new ArrayList<String>();
 		pluginMap=new SparseArray<>();
 	}
+
+	public HashMap<String, String> getParamMap() {
+		return paramMap;
+	}
 	
+	public Bundle getMetaDataBundle() {
+		return metaDataBundle;
+	}
+
 	public ArrayList<String> getApplicationList(){
 		return applicationList;
 	}
@@ -78,12 +90,6 @@ public class UBSDKConfig {
 	
 	public Context getApplicationContext(){
 		return mApplicationContext;
-	}
-	
-
-	
-	public HashMap<String,String> getParamsMap(){
-		return paramsMap;
 	}
 	
 	public UBGame getUBGame(){

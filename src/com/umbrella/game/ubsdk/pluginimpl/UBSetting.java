@@ -1,6 +1,8 @@
 package com.umbrella.game.ubsdk.pluginimpl;
 
 import com.umbrella.game.ubsdk.UBSDK;
+import com.umbrella.game.ubsdk.config.UBSDKConfig;
+import com.umbrella.game.ubsdk.demo.plugin.DemoSettingPlugin;
 import com.umbrella.game.ubsdk.factory.PluginFactory;
 import com.umbrella.game.ubsdk.iplugin.IUBSettingPlugin;
 import com.umbrella.game.ubsdk.iplugin.PluginType;
@@ -28,10 +30,11 @@ public class UBSetting implements IUBSettingPlugin{
 		
 		mUBSettingPlugin=(IUBSettingPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_SETTING);
 
-		if (mUBSettingPlugin!=null) {
-			UBLogUtil.logI(TAG+"----->create settingPlugin success");
+		if (mUBSettingPlugin==null) {
+			UBLogUtil.logE(TAG+"----->no instance of settingPlugin ,instance DemoSettingPlugin instead");
+			mUBSettingPlugin=new DemoSettingPlugin(UBSDKConfig.getInstance().getGameActivity());
 		}else{
-			UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
+			UBLogUtil.logI(TAG+"----->create settingPlugin success");
 		}
 	}
 	
@@ -118,29 +121,6 @@ public class UBSetting implements IUBSettingPlugin{
 		return configParam;
 	}
 
-	@Override
-	public boolean isFunctionSupported(int functionName) {
-		UBLogUtil.logI(TAG+"----->isFunctionSupported");
-		boolean isSupport=false;
-		if (mUBSettingPlugin!=null) {
-			isSupport=mUBSettingPlugin.isFunctionSupported(functionName);
-		}else{
-			UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
-		}
-		return isSupport;
-	}
-
-	@Override
-	public String callFunction(int functionName) {
-		UBLogUtil.logI(TAG+"----->callFunction");
-		String result="";
-		if (mUBSettingPlugin!=null) {
-			result=mUBSettingPlugin.callFunction(functionName);
-		}else{
-			UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
-		}
-		return result;
-	}
 	@Override
 	public String getPlatformName() {
 		UBLogUtil.logI(TAG+"----->getPlatformName");

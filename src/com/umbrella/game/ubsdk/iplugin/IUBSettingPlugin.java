@@ -1,6 +1,7 @@
 package com.umbrella.game.ubsdk.iplugin;
 
 public interface IUBSettingPlugin extends IUBPlugin{
+	public static final int PLUGIN_TYPE=PluginType.PLUGIN_TYPE_SETTING;
     
 //    public void setDebug(boolean debug);
     
@@ -26,11 +27,5 @@ public interface IUBSettingPlugin extends IUBPlugin{
     public int getSubPlatformID();
     
     public String getExtrasConfig(String extras);
-    
-    public boolean isFunctionSupported(int functionName);
-    
-    public String callFunction(int functionName);
-    
-    
     
 }

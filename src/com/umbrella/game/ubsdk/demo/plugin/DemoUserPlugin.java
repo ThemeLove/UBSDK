@@ -2,8 +2,8 @@ package com.umbrella.game.ubsdk.demo.plugin;
 
 import java.lang.reflect.Method;
 
-import com.umbrella.game.ubsdk.bean.UBUserInfo;
 import com.umbrella.game.ubsdk.iplugin.IUBUserPlugin;
+import com.umbrella.game.ubsdk.plugintype.user.UBUserInfo;
 import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
 import android.app.Activity;
@@ -11,7 +11,7 @@ import android.app.Activity;
 public class DemoUserPlugin implements IUBUserPlugin{
 	private final String TAG=DemoUserPlugin.class.getSimpleName();
 	private Activity mActivity;
-	private DemoUserPlugin(Activity activity){
+	public DemoUserPlugin(Activity activity){
 		this.mActivity=activity;
 	}
 
@@ -51,7 +51,7 @@ public class DemoUserPlugin implements IUBUserPlugin{
 		}
         
         try {
-			Method method = getClass().getMethod(methodName, parameterTypes);
+			Method method = getClass().getDeclaredMethod(methodName, parameterTypes);
 			return method==null?false:true;
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
@@ -62,16 +62,16 @@ public class DemoUserPlugin implements IUBUserPlugin{
 	@Override
 	public Object callMethod(String methodName, Object[] args) {
 		UBLogUtil.logI(TAG+"----->callMethod");
-		Class<?>[] paramterTypes=null;
+		Class<?>[] parameterTypes=null;
 		if (args!=null&&args.length>0) {
-			paramterTypes=new Class<?>[args.length];
+			parameterTypes=new Class<?>[args.length];
 			for (int i=0;i<args.length;i++) {
-				paramterTypes[i]=args[i].getClass();
+				parameterTypes[i]=args[i].getClass();
 			}
 		}
 		
 		try {
-			Method method = getClass().getMethod(methodName, paramterTypes);
+			Method method = getClass().getDeclaredMethod(methodName, parameterTypes);
 			return method.invoke(this, args);
 		} catch (Exception e) {
 			e.printStackTrace();

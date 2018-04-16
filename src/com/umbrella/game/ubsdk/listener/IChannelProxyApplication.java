@@ -11,4 +11,6 @@ public interface IChannelProxyApplication {
     public void onProxyCreate(Application application);
     
     public void onProxyConfigurationChanged(Application application,Configuration config);
+    
+    public void onTerminate();
 }

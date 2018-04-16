@@ -1,13 +1,13 @@
 package com.umbrella.game.ubsdk.pluginimpl;
 
 import com.umbrella.game.ubsdk.UBSDK;
-import com.umbrella.game.ubsdk.bean.UBOrderInfo;
-import com.umbrella.game.ubsdk.bean.UBRoleInfo;
 import com.umbrella.game.ubsdk.config.UBSDKConfig;
 import com.umbrella.game.ubsdk.demo.plugin.DemoPayPlugin;
 import com.umbrella.game.ubsdk.factory.PluginFactory;
 import com.umbrella.game.ubsdk.iplugin.IUBPayPlugin;
 import com.umbrella.game.ubsdk.iplugin.PluginType;
+import com.umbrella.game.ubsdk.plugintype.pay.UBOrderInfo;
+import com.umbrella.game.ubsdk.plugintype.user.UBRoleInfo;
 import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
 public class UBPay implements IUBPayPlugin{
@@ -30,7 +30,7 @@ public class UBPay implements IUBPayPlugin{
 		UBLogUtil.logI(TAG+"----->init");
 		mUBPayPlugin=(IUBPayPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_PAY);
 		if (mUBPayPlugin==null) {
-			UBLogUtil.logE(TAG+"----->no instance of payPlugin");
+			UBLogUtil.logE(TAG+"----->no instance of payPlugin ,instance DemoPayPlugin instead");
 			mUBPayPlugin=new DemoPayPlugin(UBSDKConfig.getInstance().getGameActivity());
 		}else{
 			UBLogUtil.logI(TAG+"----->create payPlugin success");
