@@ -1,12 +1,12 @@
 package com.umbrella.game.ubsdk.demo.plugin;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 import com.umbrella.game.ubsdk.UBSDK;
 import com.umbrella.game.ubsdk.iplugin.IUBADPlugin;
 import com.umbrella.game.ubsdk.listener.UBActivityListenerImpl;
 import com.umbrella.game.ubsdk.plugintype.ad.ADType;
+import com.umbrella.game.ubsdk.utils.ToastUtil;
 import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
 import android.app.Activity;
@@ -15,7 +15,7 @@ public class DemoADPlugin implements IUBADPlugin{
 	private static final String TAG=DemoADPlugin.class.getSimpleName();
 	private Activity mActivity;
 	
-	private int[] supportedADTypeArray=new int[]{ADType.AD_TYPE_BANNER};
+	private int[] supportedADTypeArray=new int[]{ADType.AD_TYPE_BANNER,ADType.AD_TYPE_FULLSCREEN,ADType.AD_TYPE_REWARDEDVIDEO,ADType.AD_TYPE_SPLASH};
 	
 	public DemoADPlugin(Activity activity){
 		this.mActivity=activity;
@@ -90,24 +90,21 @@ public class DemoADPlugin implements IUBADPlugin{
 
 	@Override
 	public void showADWithADType(int adType) {
-		UBLogUtil.logI(TAG+"----->showWithADType");
+		UBLogUtil.logI(TAG+"----->showADWithADType");
 //		显示某种类型的广告之前先隐藏某种广告类型
 		hideADWithADType(adType);
 		switch (adType) {
 		case ADType.AD_TYPE_BANNER://banner广告
-			showBannerView();
+			showBannerAD();
 			break;
 		case ADType.AD_TYPE_FULLSCREEN://插屏广告
-//			TODO
-			UBLogUtil.logE(TAG+"----->no such type of ad");
+			showFullScreenAD();
 			break;
 		case ADType.AD_TYPE_REWARDEDVIDEO://激励视频广告
-//			TODO
-			UBLogUtil.logE(TAG+"----->no such type of ad");
+			showVideoAD();
 			break;
 		case ADType.AD_TYPE_SPLASH://闪屏广告
-//			TODO
-			UBLogUtil.logE(TAG+"----->no such type of ad");
+			showSplashAD();
 			break;
 		default:
 			UBLogUtil.logE(TAG+"----->no such type of ad");
@@ -115,8 +112,24 @@ public class DemoADPlugin implements IUBADPlugin{
 		}
 	}
 	
-	private void showBannerView(){
-		UBLogUtil.logI(TAG+"----->showBannerView");
+	private void showBannerAD(){
+		UBLogUtil.logI(TAG+"----->showBannerAD");
+		ToastUtil.showToast(mActivity,"showBannerAD");
+	}
+	
+	private void showFullScreenAD() {
+		UBLogUtil.logI(TAG+"----->showFullScreenAD");
+		ToastUtil.showToast(mActivity,"showFullScreenAD");
+	}
+	
+	private void showVideoAD() {
+		UBLogUtil.logI(TAG+"----->showVideoAD");
+		ToastUtil.showToast(mActivity, "showVideoAD");
+	}
+	
+	private void showSplashAD() {
+		UBLogUtil.logI(TAG+"----->showSplashAD");
+		ToastUtil.showToast(mActivity, "showSplashAD");
 	}
 
 	@Override
@@ -124,19 +137,16 @@ public class DemoADPlugin implements IUBADPlugin{
 		UBLogUtil.logI(TAG+"----->hideADWithADType");
 		switch (adType) {
 		case ADType.AD_TYPE_BANNER:
-			hideBannerView();
+			hideBannerAD();
 			break;
 		case ADType.AD_TYPE_FULLSCREEN:
-//			TODO
-			UBLogUtil.logE(TAG+"----->no such type of ad");
+			hideFullScreenAD();
 			break;
 		case ADType.AD_TYPE_REWARDEDVIDEO:
-//			TODO
-			UBLogUtil.logE(TAG+"----->no such type of ad");
+			hideVideoAD();
 			break;
 		case ADType.AD_TYPE_SPLASH:
-//			TODO
-			UBLogUtil.logE(TAG+"----->no such type of ad");
+			hideSplashAD();
 			break;
 		default:
 			UBLogUtil.logE(TAG+"----->no such type of ad");
@@ -144,8 +154,26 @@ public class DemoADPlugin implements IUBADPlugin{
 		}
 		
 	}
-	
-	private void hideBannerView(){
-		UBLogUtil.logI(TAG+"----->hideBannerView");
+
+	private void hideBannerAD(){
+		UBLogUtil.logI(TAG+"----->hideBannerAD");
+		ToastUtil.showToast(mActivity,"hideBannerAD");
 	}
+	
+	private void hideFullScreenAD() {
+		UBLogUtil.logI(TAG+"----->hideFullScreenAD");
+		ToastUtil.showToast(mActivity,"hideFullScreenAD");
+	}
+	
+
+	private void hideVideoAD() {
+		UBLogUtil.logI(TAG+"----->hideVideoAD");
+		ToastUtil.showToast(mActivity, "hideVideoAD");
+	}
+
+	private void hideSplashAD() {
+		UBLogUtil.logI(TAG+"----->hideSplashAD");
+		ToastUtil.showToast(mActivity,"hideSplashAD");
+	}
+	
 }

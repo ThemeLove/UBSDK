@@ -13,6 +13,7 @@ public class DemoUserPlugin implements IUBUserPlugin{
 	private Activity mActivity;
 	public DemoUserPlugin(Activity activity){
 		this.mActivity=activity;
+		DemoSDK.getInstance().init();
 	}
 
 	@Override
