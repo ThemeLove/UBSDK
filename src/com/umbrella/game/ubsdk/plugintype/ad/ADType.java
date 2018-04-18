@@ -10,17 +10,17 @@ public class ADType {
 	 */
 	public static final int AD_TYPE_BANNER=1;
 	/**
-	 * 插屏广告
+	 * FullScreen
 	 */
 	public static final int AD_TYPE_FULLSCREEN=2;
 	
 	/**
-	 * 闪屏广告
+	 * splash AD
 	 */
 	public static final int AD_TYPE_SPLASH=3;
 	
 	/**
-	 * 激励视频广告
+	 * video AD
 	 */
 	public static final int AD_TYPE_REWARDEDVIDEO=4;
 }
