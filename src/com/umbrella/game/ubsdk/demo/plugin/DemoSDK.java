@@ -12,6 +12,9 @@ import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Bundle;
 
 public class DemoSDK {
 	private final String TAG=DemoSDK.class.getSimpleName();
@@ -34,9 +37,70 @@ public class DemoSDK {
 		UBLogUtil.logI(TAG+"----->init");
 		mActivity=UBSDKConfig.getInstance().getGameActivity();
 		UBSDK.getInstance().setUBActivityListener(new UBActivityListenerImpl(){
+			
+			@Override
+			public void onCreate(Bundle savedInstanceState) {
+				UBLogUtil.logI(TAG+"----->onCreate");
+			}
+
+			@Override
+			public void onRestart() {
+				UBLogUtil.logI(TAG+"----->onRestart");
+			}
+
+			@Override
+			public void onStart() {
+				UBLogUtil.logI(TAG+"----->onStart");
+			}
+
+			@Override
+			public void onPause() {
+				UBLogUtil.logI(TAG+"----->onPause");
+			}
+
+			@Override
+			public void onResume() {
+				UBLogUtil.logI(TAG+"----->onResume");
+			}
+
+			@Override
+			public void onAttachedToWindow() {
+				UBLogUtil.logI(TAG+"----->onAttachedToWindow");
+			}
+
+			@Override
+			public void onStop() {
+				UBLogUtil.logI(TAG+"----->onStop");
+			}
+
+			@Override
+			public void onDestroy() {
+				UBLogUtil.logI(TAG+"----->onDestroy");
+			}
+
+			@Override
+			public void onNewIntent(Intent newIntent) {
+				UBLogUtil.logI(TAG+"----->onNewIntent");
+			}
+
+			@Override
+			public void onConfigurationChanged(Configuration newConfig) {
+				UBLogUtil.logI(TAG+"----->onConfigurationChanged");
+			}
+
+			@Override
+			public void onActivityResult(int requestCode, int resultCode, Intent data) {
+				UBLogUtil.logI(TAG+"----->onActivityResult");
+			}
+
+			@Override
+			public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) {
+				UBLogUtil.logI(TAG+"----->onRequestPermissionResult");
+			}
+
 			@Override
 			public void onBackPressed() {
-				super.onBackPressed();
+				UBLogUtil.logI(TAG+"----->onBackPressed");
 			}
 		});
 		
