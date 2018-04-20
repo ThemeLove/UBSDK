@@ -6,7 +6,6 @@ import com.umbrella.game.ubsdk.UBSDK;
 import com.umbrella.game.ubsdk.iplugin.IUBADPlugin;
 import com.umbrella.game.ubsdk.listener.UBActivityListenerImpl;
 import com.umbrella.game.ubsdk.plugintype.ad.ADType;
-import com.umbrella.game.ubsdk.utils.ToastUtil;
 import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
 import android.app.Activity;
@@ -175,22 +174,22 @@ public class DemoADPlugin implements IUBADPlugin{
 	
 	private void showBannerAD(){
 		UBLogUtil.logI(TAG+"----->showBannerAD");
-		ToastUtil.showToast(mActivity,"showBannerAD");
+//		ToastUtil.showToast(mActivity,"showBannerAD");
 	}
 	
 	private void showFullScreenAD() {
 		UBLogUtil.logI(TAG+"----->showFullScreenAD");
-		ToastUtil.showToast(mActivity,"showFullScreenAD");
+//		ToastUtil.showToast(mActivity,"showFullScreenAD");
 	}
 	
 	private void showVideoAD() {
 		UBLogUtil.logI(TAG+"----->showVideoAD");
-		ToastUtil.showToast(mActivity, "showVideoAD");
+//		ToastUtil.showToast(mActivity, "showVideoAD");
 	}
 	
 	private void showSplashAD() {
 		UBLogUtil.logI(TAG+"----->showSplashAD");
-		ToastUtil.showToast(mActivity, "showSplashAD");
+//		ToastUtil.showToast(mActivity, "showSplashAD");
 	}
 
 	@Override
@@ -218,23 +217,23 @@ public class DemoADPlugin implements IUBADPlugin{
 
 	private void hideBannerAD(){
 		UBLogUtil.logI(TAG+"----->hideBannerAD");
-		ToastUtil.showToast(mActivity,"hideBannerAD");
+//		ToastUtil.showToast(mActivity,"hideBannerAD");
 	}
 	
 	private void hideFullScreenAD() {
 		UBLogUtil.logI(TAG+"----->hideFullScreenAD");
-		ToastUtil.showToast(mActivity,"hideFullScreenAD");
+//		ToastUtil.showToast(mActivity,"hideFullScreenAD");
 	}
 	
 
 	private void hideVideoAD() {
 		UBLogUtil.logI(TAG+"----->hideVideoAD");
-		ToastUtil.showToast(mActivity, "hideVideoAD");
+//		ToastUtil.showToast(mActivity, "hideVideoAD");
 	}
 
 	private void hideSplashAD() {
 		UBLogUtil.logI(TAG+"----->hideSplashAD");
-		ToastUtil.showToast(mActivity,"hideSplashAD");
+//		ToastUtil.showToast(mActivity,"hideSplashAD");
 	}
 	
 }
