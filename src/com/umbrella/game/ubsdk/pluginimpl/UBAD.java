@@ -1,5 +1,6 @@
 package com.umbrella.game.ubsdk.pluginimpl;
 
+import com.umbrella.game.ubsdk.callback.UBADCallback;
 import com.umbrella.game.ubsdk.config.UBSDKConfig;
 import com.umbrella.game.ubsdk.demo.plugin.DemoADPlugin;
 import com.umbrella.game.ubsdk.factory.PluginFactory;
@@ -23,7 +24,7 @@ public class UBAD implements IUBADPlugin{
 		}
 		return instance;
 	}
-	
+
 	public void init(){
 		UBLogUtil.logI(TAG+"----->init");
 		mUBADPlugin=(IUBADPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_AD);
@@ -33,6 +34,26 @@ public class UBAD implements IUBADPlugin{
 		}else{
 			UBLogUtil.logI(TAG+"----->create ADPlugin success");
 		}
+	}
+	
+	private UBADCallback mUBADCallback;
+	
+	/**
+	 * set the UBAD Callback
+	 * @param ubADCallback
+	 */
+	public void setUBADCallback(UBADCallback ubADCallback){
+		UBLogUtil.logI(TAG+"----->setUBADCallback");
+		mUBADCallback=ubADCallback;
+	}
+	
+	/**
+	 * return the UBAD Callback
+	 * @return
+	 */
+	public UBADCallback getUBADCallback(){
+		UBLogUtil.logI(TAG+"----->getUBADCallback");
+		return mUBADCallback;
 	}
 
 	@Override
