@@ -24,7 +24,7 @@ public class UBAD implements IUBADPlugin{
 		}
 		return instance;
 	}
-	
+
 	public void init(){
 		UBLogUtil.logI(TAG+"----->init");
 		mUBADPlugin=(IUBADPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_AD);
@@ -38,16 +38,26 @@ public class UBAD implements IUBADPlugin{
 	
 	private UBADCallback mUBADCallback;
 	
+
+	/**
+	 * set the UBAD Callback
+	 * @param ubADCallback
+	 */
 	public void setUBADCallback(UBADCallback ubADCallback){
 		UBLogUtil.logI(TAG+"----->setUBADCallback");
-		this.mUBADCallback=ubADCallback;
+		mUBADCallback=ubADCallback;
 	}
 	
+	/**
+	 * return the UBAD Callback
+	 * @return
+	 */
+
 	public UBADCallback getUBADCallback(){
 		UBLogUtil.logI(TAG+"----->getUBADCallback");
 		return mUBADCallback;
 	}
-	
+
 	@Override
 	public boolean isSupportMethod(String methodName,Object[] args) {
 		UBLogUtil.logI(TAG+"----->isSupportMethod");

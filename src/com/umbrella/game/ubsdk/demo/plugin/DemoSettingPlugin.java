@@ -21,7 +21,6 @@ public class DemoSettingPlugin implements IUBSettingPlugin{
 		UBLogUtil.logI(TAG+"----->exit");
 		DemoSDK.getInstance().exit();
 	}
-	
 
 	@Override
 	public int getPlatformID() {
