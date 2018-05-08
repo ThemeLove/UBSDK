@@ -1,5 +1,6 @@
 package com.umbrella.game.ubsdk.pluginimpl;
 
+import com.umbrella.game.ubsdk.callback.UBADCallback;
 import com.umbrella.game.ubsdk.config.UBSDKConfig;
 import com.umbrella.game.ubsdk.demo.plugin.DemoADPlugin;
 import com.umbrella.game.ubsdk.factory.PluginFactory;
@@ -34,7 +35,19 @@ public class UBAD implements IUBADPlugin{
 			UBLogUtil.logI(TAG+"----->create ADPlugin success");
 		}
 	}
-
+	
+	private UBADCallback mUBADCallback;
+	
+	public void setUBADCallback(UBADCallback ubADCallback){
+		UBLogUtil.logI(TAG+"----->setUBADCallback");
+		this.mUBADCallback=ubADCallback;
+	}
+	
+	public UBADCallback getUBADCallback(){
+		UBLogUtil.logI(TAG+"----->getUBADCallback");
+		return mUBADCallback;
+	}
+	
 	@Override
 	public boolean isSupportMethod(String methodName,Object[] args) {
 		UBLogUtil.logI(TAG+"----->isSupportMethod");
