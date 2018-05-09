@@ -17,7 +17,7 @@ public class DemoADPlugin implements IUBADPlugin{
 	private static final String TAG=DemoADPlugin.class.getSimpleName();
 	private Activity mActivity;
 	
-	private int[] supportedADTypeArray=new int[]{ADType.AD_TYPE_BANNER,ADType.AD_TYPE_FULLSCREEN,ADType.AD_TYPE_REWARDEDVIDEO,ADType.AD_TYPE_SPLASH};
+	private int[] supportedADTypeArray=new int[]{ADType.AD_TYPE_BANNER,ADType.AD_TYPE_INTERSTITIAL,ADType.AD_TYPE_SPLASH,ADType.AD_TYPE_REWARDEDVIDEO};
 	
 	public DemoADPlugin(Activity activity){
 		this.mActivity=activity;
@@ -157,14 +157,14 @@ public class DemoADPlugin implements IUBADPlugin{
 		case ADType.AD_TYPE_BANNER://banner广告
 			showBannerAD();
 			break;
-		case ADType.AD_TYPE_FULLSCREEN://插屏广告
-			showFullScreenAD();
-			break;
-		case ADType.AD_TYPE_REWARDEDVIDEO://激励视频广告
-			showVideoAD();
+		case ADType.AD_TYPE_INTERSTITIAL://插屏广告
+			showInterstitialAD();
 			break;
 		case ADType.AD_TYPE_SPLASH://闪屏广告
 			showSplashAD();
+			break;
+		case ADType.AD_TYPE_REWARDEDVIDEO://激励视频广告
+			showVideoAD();
 			break;
 		default:
 			UBLogUtil.logE(TAG+"----->no such type of ad");
@@ -177,8 +177,8 @@ public class DemoADPlugin implements IUBADPlugin{
 //		ToastUtil.showToast(mActivity,"showBannerAD");
 	}
 	
-	private void showFullScreenAD() {
-		UBLogUtil.logI(TAG+"----->showFullScreenAD");
+	private void showInterstitialAD() {
+		UBLogUtil.logI(TAG+"----->showInterstitialAD");
 //		ToastUtil.showToast(mActivity,"showFullScreenAD");
 	}
 	
@@ -199,8 +199,8 @@ public class DemoADPlugin implements IUBADPlugin{
 		case ADType.AD_TYPE_BANNER:
 			hideBannerAD();
 			break;
-		case ADType.AD_TYPE_FULLSCREEN:
-			hideFullScreenAD();
+		case ADType.AD_TYPE_INTERSTITIAL:
+			hideInterstitialAD();
 			break;
 		case ADType.AD_TYPE_REWARDEDVIDEO:
 			hideVideoAD();
@@ -220,8 +220,8 @@ public class DemoADPlugin implements IUBADPlugin{
 //		ToastUtil.showToast(mActivity,"hideBannerAD");
 	}
 	
-	private void hideFullScreenAD() {
-		UBLogUtil.logI(TAG+"----->hideFullScreenAD");
+	private void hideInterstitialAD() {
+		UBLogUtil.logI(TAG+"----->hideInterstitialAD");
 //		ToastUtil.showToast(mActivity,"hideFullScreenAD");
 	}
 	

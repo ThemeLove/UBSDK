@@ -6,21 +6,22 @@ package com.umbrella.game.ubsdk.plugintype.ad;
  */
 public class ADType {
 	/**
-	 * banner 广告
+	 * Banner AD (Banner广告)
 	 */
 	public static final int AD_TYPE_BANNER=1;
-	/**
-	 * FullScreen
-	 */
-	public static final int AD_TYPE_FULLSCREEN=2;
 	
 	/**
-	 * splash AD
+	 * Interstitial AD (插屏广告)
+	 */
+	public static final int AD_TYPE_INTERSTITIAL=2;
+	
+	/**
+	 * Splash AD (开屏广告)
 	 */
 	public static final int AD_TYPE_SPLASH=3;
 	
 	/**
-	 * video AD
+	 * RewardVideo AD (激励视频广告)
 	 */
 	public static final int AD_TYPE_REWARDEDVIDEO=4;
 }
