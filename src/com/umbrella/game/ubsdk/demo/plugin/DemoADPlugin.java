@@ -17,7 +17,7 @@ public class DemoADPlugin implements IUBADPlugin{
 	private static final String TAG=DemoADPlugin.class.getSimpleName();
 	private Activity mActivity;
 	
-	private int[] supportedADTypeArray=new int[]{ADType.AD_TYPE_BANNER,ADType.AD_TYPE_INTERSTITIAL,ADType.AD_TYPE_SPLASH,ADType.AD_TYPE_REWARDEDVIDEO};
+	private int[] supportedADTypeArray=new int[]{ADType.AD_TYPE_BANNER,ADType.AD_TYPE_INTERSTITIAL,ADType.AD_TYPE_SPLASH,ADType.AD_TYPE_REWARDVIDEO};
 	
 	public DemoADPlugin(Activity activity){
 		this.mActivity=activity;
@@ -163,7 +163,7 @@ public class DemoADPlugin implements IUBADPlugin{
 		case ADType.AD_TYPE_SPLASH://闪屏广告
 			showSplashAD();
 			break;
-		case ADType.AD_TYPE_REWARDEDVIDEO://激励视频广告
+		case ADType.AD_TYPE_REWARDVIDEO://激励视频广告
 			showVideoAD();
 			break;
 		default:
@@ -202,7 +202,7 @@ public class DemoADPlugin implements IUBADPlugin{
 		case ADType.AD_TYPE_INTERSTITIAL:
 			hideInterstitialAD();
 			break;
-		case ADType.AD_TYPE_REWARDEDVIDEO:
+		case ADType.AD_TYPE_REWARDVIDEO:
 			hideVideoAD();
 			break;
 		case ADType.AD_TYPE_SPLASH:

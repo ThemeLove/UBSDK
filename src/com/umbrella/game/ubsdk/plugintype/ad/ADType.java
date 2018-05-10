@@ -23,5 +23,5 @@ public class ADType {
 	/**
 	 * RewardVideo AD (激励视频广告)
 	 */
-	public static final int AD_TYPE_REWARDEDVIDEO=4;
+	public static final int AD_TYPE_REWARDVIDEO=4;
 }

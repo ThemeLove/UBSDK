@@ -31,7 +31,7 @@ public class UBApplication extends Application{
 //		加载AndroidManifest.xml中的元数据
 		UBConfigModel.getInstance().loadMetaDataBundle(base);
 //		TODO 这个地方控制解析加密、不加密文件的flag
-		boolean isInitUBSDKConfigSuccess = UBConfigModel.getInstance().initUBSDKConfig(true);
+		boolean isInitUBSDKConfigSuccess = UBConfigModel.getInstance().initUBSDKConfig(false);
 		if (!isInitUBSDKConfigSuccess) {
 			UBLogUtil.logW(TAG+"----->waring!!!!!----->load the config file may be fail...");
 			UBLogUtil.logW(TAG+"----->waring!!!!!----->init with the demo plugins...");
