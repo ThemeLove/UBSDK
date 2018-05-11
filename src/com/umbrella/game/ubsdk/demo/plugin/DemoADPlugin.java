@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import com.umbrella.game.ubsdk.UBSDK;
 import com.umbrella.game.ubsdk.iplugin.IUBADPlugin;
 import com.umbrella.game.ubsdk.listener.UBActivityListenerImpl;
+import com.umbrella.game.ubsdk.pluginimpl.UBAD;
 import com.umbrella.game.ubsdk.plugintype.ad.ADType;
 import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
@@ -24,6 +25,9 @@ public class DemoADPlugin implements IUBADPlugin{
 //		TODO loadADParams  加载广告参数
 //		设置ActivityListener监听
 		setActivityListener();
+		
+//		同步给出初始化成功回调
+		UBAD.getInstance().getUBADCallback().onInit(true, "Simulation Demo AD init success!");
 	}
 
 	private void setActivityListener(){
@@ -175,21 +179,25 @@ public class DemoADPlugin implements IUBADPlugin{
 	private void showBannerAD(){
 		UBLogUtil.logI(TAG+"----->showBannerAD");
 //		ToastUtil.showToast(mActivity,"showBannerAD");
+		UBAD.getInstance().getUBADCallback().onShow(ADType.AD_TYPE_BANNER,"Simulation Banner AD show success!");
 	}
 	
 	private void showInterstitialAD() {
 		UBLogUtil.logI(TAG+"----->showInterstitialAD");
 //		ToastUtil.showToast(mActivity,"showFullScreenAD");
-	}
-	
-	private void showVideoAD() {
-		UBLogUtil.logI(TAG+"----->showVideoAD");
-//		ToastUtil.showToast(mActivity, "showVideoAD");
+		UBAD.getInstance().getUBADCallback().onShow(ADType.AD_TYPE_INTERSTITIAL,"Simulation Interstitial AD show success!");
 	}
 	
 	private void showSplashAD() {
 		UBLogUtil.logI(TAG+"----->showSplashAD");
 //		ToastUtil.showToast(mActivity, "showSplashAD");
+		UBAD.getInstance().getUBADCallback().onShow(ADType.AD_TYPE_SPLASH,"Simulation Splash AD show success!");
+	}
+	
+	private void showVideoAD() {
+		UBLogUtil.logI(TAG+"----->showVideoAD");
+//		ToastUtil.showToast(mActivity, "showVideoAD");
+		UBAD.getInstance().getUBADCallback().onShow(ADType.AD_TYPE_REWARDVIDEO,"Simulation RewardVideo AD show success!");
 	}
 
 	@Override
