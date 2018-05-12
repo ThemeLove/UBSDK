@@ -43,7 +43,7 @@ public class UBAD implements IUBADPlugin{
 	 * set the UBAD Callback
 	 * @param ubADCallback
 	 */
-	public void setUBADCallback(UBADCallback ubADCallback){
+	private void setUBADCallback(UBADCallback ubADCallback){
 		UBLogUtil.logI(TAG+"----->setUBADCallback");
 		mUBADCallback=ubADCallback;
 	}
@@ -82,6 +82,12 @@ public class UBAD implements IUBADPlugin{
 			return mUBADPlugin.isSupportADType(adType);
 		}
 		return false;
+	}
+	
+	public void showADWithADType(int adType,UBADCallback ubADCallback){
+		UBLogUtil.logI(TAG+"----->showADWithADtype with ubADcallback");
+		setUBADCallback(ubADCallback);
+		showADWithADType(adType);
 	}
 
 	@Override
