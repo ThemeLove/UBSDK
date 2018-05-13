@@ -27,7 +27,7 @@ public class DemoADPlugin implements IUBADPlugin{
 		setActivityListener();
 		
 //		同步给出初始化成功回调
-		UBAD.getInstance().getUBADCallback().onInit(true, "Simulation Demo AD init success!");
+		UBLogUtil.logI(TAG+"----->Simulation Demo AD init success!");
 	}
 
 	private void setActivityListener(){

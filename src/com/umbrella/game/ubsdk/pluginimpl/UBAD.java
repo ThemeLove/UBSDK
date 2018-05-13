@@ -85,7 +85,7 @@ public class UBAD implements IUBADPlugin{
 	}
 	
 	public void showADWithADType(int adType,UBADCallback ubADCallback){
-		UBLogUtil.logI(TAG+"----->showADWithADtype with ubADcallback");
+		UBLogUtil.logI(TAG+"----->showADWithADtype with UBADcallback");
 		setUBADCallback(ubADCallback);
 		showADWithADType(adType);
 	}
