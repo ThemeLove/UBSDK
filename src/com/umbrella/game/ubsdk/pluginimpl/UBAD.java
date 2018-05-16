@@ -1,5 +1,6 @@
 package com.umbrella.game.ubsdk.pluginimpl;
 
+import com.umbrella.game.ubsdk.UBSDK;
 import com.umbrella.game.ubsdk.callback.UBADCallback;
 import com.umbrella.game.ubsdk.config.UBSDKConfig;
 import com.umbrella.game.ubsdk.demo.plugin.DemoADPlugin;
@@ -91,18 +92,51 @@ public class UBAD implements IUBADPlugin{
 	}
 
 	@Override
-	public void showADWithADType(int adType) {
+	public void showADWithADType(final int adType) {
 		UBLogUtil.logI(TAG+"----->showADWithADType");
 		if (mUBADPlugin!=null) {
-			mUBADPlugin.showADWithADType(adType);
+			UBSDK.getInstance().runOnUIThread(new Runnable() {
+				@Override
+				public void run() {
+					mUBADPlugin.showADWithADType(adType);
+				}
+			});
+		}else{
+			UBSDK.getInstance().runOnUIThread(new Runnable() {
+				
+				@Override
+				public void run() {
+					UBADCallback ubADCallback = UBAD.getInstance().getUBADCallback();
+					if (ubADCallback!=null) {
+						ubADCallback.onFailed(adType, "no instance of AD plugin");
+					}
+				}
+			});
 		}
 	}
 
 	@Override
-	public void hideADWithADType(int adType) {
+	public void hideADWithADType(final int adType) {
 		UBLogUtil.logI(TAG+"----->hideADWithADType");
 		if (mUBADPlugin!=null) {
-			mUBADPlugin.hideADWithADType(adType);
+			UBSDK.getInstance().runOnUIThread(new Runnable() {
+				
+				@Override
+				public void run() {
+					mUBADPlugin.hideADWithADType(adType);
+				}
+			});
+		}else{
+			UBSDK.getInstance().runOnUIThread(new Runnable() {
+				@Override
+				public void run() {
+					UBADCallback ubADCallback = UBAD.getInstance().getUBADCallback();
+					if (ubADCallback!=null) {
+						ubADCallback.onFailed(adType, "no instance of AD plugin!");
+						
+					}
+				}
+			});
 		}
 	}
 
