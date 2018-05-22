@@ -1,5 +1,7 @@
 package com.umbrella.game.ubsdk.model;
 
+import com.umbrella.game.ubsdk.plugintype.pay.PayConfig;
+
 public class UBPayConfigModel {
 	private final static String TAG=UBPayConfigModel.class.getSimpleName();
 	
@@ -16,6 +18,14 @@ public class UBPayConfigModel {
 		return instance;
 	}
 	
-	public 
+	/**
+	 * 加载商店支付配置
+	 * @return
+	 */
+	public PayConfig loadStorePayConfig(String payConfigPath){
+		
+		PayConfig payConfig = new PayConfig();
+		return payConfig;
+	}
 	
 }
