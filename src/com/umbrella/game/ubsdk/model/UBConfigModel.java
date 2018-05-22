@@ -97,7 +97,7 @@ public class UBConfigModel {
 						int pluginType = Integer.parseInt(parse.getAttributeValue(null,"type"));
 						UBSDKConfig.getInstance().getPluginMap().put(pluginType, pluginName);
 						
-						isSuccess=true;//这里是解析到右插件标签标示为解析成功
+						isSuccess=true;//这里是解析到有插件标签标示为解析成功
 					}
 					break;
 				default:
