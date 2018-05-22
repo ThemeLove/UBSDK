@@ -30,7 +30,7 @@ public class TextUtil {
     }
     
 	/**
-	 * 去除字符串中的所有字符
+	 * 去除字符串中的所有空格
 	 * @param str
 	 * @return
 	 */
