@@ -1,20 +1,19 @@
 package com.umbrella.game.ubsdk.plugintype.pay;
 
 import java.util.ArrayList;
-
 /**
  * 支付配置
- * @author qingshanliao
+ * @author qingshanliaos
  */
 public class PayConfig {
 	/**
 	 * 产品唯一ID
 	 */
-	private int productID;
+	private String productID;
 	/**
 	 * 支付类型
 	 */
-	private int payType=PayConstant.PAY_TYPE_NORMAL;
+	private int payType=PayType.PAY_TYPE_NORMAL;
 	/**
 	 * 计费点
 	 */
@@ -27,12 +26,12 @@ public class PayConfig {
 	/**
 	 * 支付方法集合
 	 */
-	private ArrayList<PayMethod> payMethodList;
+	private ArrayList<PayMethodItem> payMethodItemList;
 	
-	public int getProductID() {
+	public String getProductID() {
 		return productID;
 	}
-	public void setProductID(int productID) {
+	public void setProductID(String productID) {
 		this.productID = productID;
 	}
 	public int getPayType() {
@@ -53,15 +52,15 @@ public class PayConfig {
 	public void setOrderInfo(UBOrderInfo orderInfo) {
 		this.orderInfo = orderInfo;
 	}
-	public ArrayList<PayMethod> getPayMethodList() {
-		return payMethodList;
+	public ArrayList<PayMethodItem> getPayMethodItemList() {
+		return payMethodItemList;
 	}
-	public void setPayMethodList(ArrayList<PayMethod> payMethodList) {
-		this.payMethodList = payMethodList;
+	public void setPayMethodItemList(ArrayList<PayMethodItem> payMethodItemList) {
+		this.payMethodItemList = payMethodItemList;
 	}
 	@Override
 	public String toString() {
 		return "PayConfig [productID=" + productID + ", payType=" + payType + ", billing=" + billing + ", orderInfo="
-				+ orderInfo + ", payMethodList=" + payMethodList + "]";
+				+ orderInfo + ", payMethodItemList=" + payMethodItemList + "]";
 	}
 }

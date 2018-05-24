@@ -1,64 +1,25 @@
 package com.umbrella.game.ubsdk.plugintype.pay;
-/**
- * 自定义支付方式JavaBean封装 
- * @author qingshanliao
- */
+
 public class PayMethod {
 	/**
-	 * 支付方式名字
+	 * ALIPAY支付 [alipay]
 	 */
-	private String payName="";
+	public static final int ALIPAY=3;
 	/**
-	 * 支付方式的icon
+	 * 微信支付 [weichat pay]
 	 */
-	private int    payIcon=0;
+	public static final int WEIXING=4;
+	
 	/**
-	 * 产品名字
+	 * 移动支付[mobile pay]
 	 */
-	private String productName="";
+	public static final int MOBILE=5;
 	/**
-	 * 产品的价格
+	 * 联通支付 [unicom pay]
 	 */
-	private double amount=0.0;
+	public static final int UNICOM=6;
 	/**
-	 * 产品描述
+	 * 电信支付 [telecom pay]
 	 */
-	private String productDesc="";
-	public String getPayName() {
-		return payName;
-	}
-	public void setPayName(String payName) {
-		this.payName = payName;
-	}
-	public int getPayIcon() {
-		return payIcon;
-	}
-	public void setPayIcon(int payIcon) {
-		this.payIcon = payIcon;
-	}
-	public String getProductName() {
-		return productName;
-	}
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public String getProductDesc() {
-		return productDesc;
-	}
-	public void setProductDesc(String productDesc) {
-		this.productDesc = productDesc;
-	}
-	public double getAmount() {
-		return amount;
-	}
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-	@Override
-	public String toString() {
-		return "PayMethod [payName=" + payName + ", payIcon=" + payIcon + ", productName=" + productName + ", amount="
-				+ amount + ", productDesc=" + productDesc + "]";
-	}
-
+	public static final int TELECOM=7;
 }
