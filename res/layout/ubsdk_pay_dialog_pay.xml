@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ubsdk_pay_shape_round_rect_white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp" >
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="8dp"
+            android:contentDescription="@string/ubsdk_pay_sdk_logo"
+            android:layout_centerVertical="true"
+            android:scaleType="center"
+            android:src="@drawable/ubsdk_pay_ic_close" />
+
+        <TextView
+            android:id="@+id/tv_payTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="选择支付方式"
+            android:layout_centerInParent="true"
+            android:textColor="#000000" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#CCCCCC" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_payUserName"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:background="#30CCCCCC"
+        android:text="ThemeLove" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="#CCCCCC" />
+
+    <TextView
+        android:id="@+id/tv_payOrderInfo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:background="#30CCCCCC"
+        android:text="Y100" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="#CCCCCC" />
+
+    <HorizontalScrollView
+        android:scrollbars="none"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff" >
+
+        <LinearLayout
+            android:id="@+id/ll_payMethodItemContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:padding="3dp" >
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="#CCCCCC" />
+
+    <Button
+        android:layout_marginTop="5dp"
+        android:id="@+id/btn_pay"
+        android:layout_width="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_margin="3dp"
+        android:background="@drawable/ubsdk_pay_selector_pay"
+        android:text="立即充值" />
+
+    <TextView
+        android:id="@+id/tv_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:textSize="12sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="#FFFF6600"
+        android:text="@string/ubsdk_pay_sdk_logo" />
+
+</LinearLayout>

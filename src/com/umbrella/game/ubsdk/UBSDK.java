@@ -19,6 +19,7 @@ import com.umbrella.game.ubsdk.pluginimpl.UBUser;
 import com.umbrella.game.ubsdk.plugintype.pay.UBOrderInfo;
 import com.umbrella.game.ubsdk.plugintype.user.UBRoleInfo;
 import com.umbrella.game.ubsdk.ui.UBDialog;
+import com.umbrella.game.ubsdk.utils.DisplayUtil;
 import com.umbrella.game.ubsdk.utils.TextUtil;
 import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
@@ -83,6 +84,10 @@ public class UBSDK {
 		UBLogUtil.logI(TAG+"----->setUBInitCallback");
 		
 		UBSDKConfig.getInstance().setGameActivity(activity);
+		
+//		初始化屏幕工具类
+		DisplayUtil.initScreen(activity);
+		
 		runOnUIThread(new Runnable() {
 			
 			@Override

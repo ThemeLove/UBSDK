@@ -1,6 +1,8 @@
 package com.umbrella.game.ubsdk.plugintype.pay;
 
 import java.util.ArrayList;
+
+import com.umbrella.game.ubsdk.plugintype.pay.diy.PayMethodItem;
 /**
  * 支付配置
  * @author qingshanliaos
@@ -10,6 +12,14 @@ public class PayConfig {
 	 * 产品唯一ID
 	 */
 	private String productID;
+	/**
+	 * 商品名
+	 */
+	private String productName;
+	/**
+	 * 商品金额
+	 */
+	private double amount;
 	/**
 	 * 支付类型
 	 */
@@ -58,9 +68,22 @@ public class PayConfig {
 	public void setPayMethodItemList(ArrayList<PayMethodItem> payMethodItemList) {
 		this.payMethodItemList = payMethodItemList;
 	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
 	@Override
 	public String toString() {
-		return "PayConfig [productID=" + productID + ", payType=" + payType + ", billing=" + billing + ", orderInfo="
-				+ orderInfo + ", payMethodItemList=" + payMethodItemList + "]";
+		return "PayConfig [productID=" + productID + ", productName=" + productName + ", amount=" + amount
+				+ ", payType=" + payType + ", billing=" + billing + ", orderInfo=" + orderInfo + ", payMethodItemList="
+				+ payMethodItemList + "]";
 	}
 }

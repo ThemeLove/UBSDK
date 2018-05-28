@@ -9,8 +9,8 @@ import org.xmlpull.v1.XmlPullParser;
 import com.umbrella.game.ubsdk.config.UBSDKConfig;
 import com.umbrella.game.ubsdk.plugintype.pay.Billing;
 import com.umbrella.game.ubsdk.plugintype.pay.PayConfig;
-import com.umbrella.game.ubsdk.plugintype.pay.PayMethodItem;
 import com.umbrella.game.ubsdk.plugintype.pay.UBOrderInfo;
+import com.umbrella.game.ubsdk.plugintype.pay.diy.PayMethodItem;
 import com.umbrella.game.ubsdk.utils.AssetUtil;
 import com.umbrella.game.ubsdk.utils.TextUtil;
 
@@ -56,10 +56,14 @@ public class UBPayConfigModel {
 					if (TextUtil.equals("product",name)) {
 						productID = parse.getAttributeValue(null, "productID");
 						String payType = parse.getAttributeValue(null, "payType");
+						String productName = parse.getAttributeValue(null,"productName");
+						String amount = parse.getAttributeValue(null,"amount");
 						
 						payConfig = new PayConfig();
 						payConfig.setProductID(productID);
 						payConfig.setPayType(Integer.parseInt(payType));
+						payConfig.setProductName(productName);
+						payConfig.setAmount(Double.parseDouble(amount));
 						
 						payConfigMap.put(productID, payConfig);
 						
@@ -76,16 +80,19 @@ public class UBPayConfigModel {
 						payConfig.setBilling(billing);
 					}else if (TextUtil.equals("paymethoditem", name)) {
 						PayMethodItem payMethodItem = new PayMethodItem();
+						
+						String payID = parse.getAttributeValue(null, "payID");
 						String payName = parse.getAttributeValue(null, "payName");
-						String payIcon = parse.getAttributeValue(null, "payIcon");
-						String amount = parse.getAttributeValue(null, "amount");
-						String productName = parse.getAttributeValue(null, "productName");
-						String productDesc = parse.getAttributeValue(null, "productDesc");
-						payMethodItem.setAmount(Double.parseDouble(amount));
-						payMethodItem.setPayIcon(Integer.parseInt(payIcon));
-						payMethodItem.setPayName(payName);
-						payMethodItem.setProductName(productName);
-						payMethodItem.setProductDesc(productDesc);
+						String payDesc = parse.getAttributeValue(null, "payDesc");
+						String isSelect = parse.getAttributeValue(null,"isSelect");
+						if (TextUtil.equals("true",isSelect)) {
+							payMethodItem.setSelect(true);
+						}else{
+							payMethodItem.setSelect(false);
+						}
+						payMethodItem.setID(Integer.parseInt(payID));
+						payMethodItem.setName(payName);
+						payMethodItem.setDesc(payDesc);
 						payMethodItemList.add(payMethodItem);
 					}else if (TextUtil.equals("orderinfo", name)) {
 						UBOrderInfo ubOrderInfo = new UBOrderInfo();

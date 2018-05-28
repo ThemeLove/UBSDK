@@ -18,16 +18,53 @@ public final class R {
     }
     public static final class drawable {
         public static int ic_launcher=0x7f020000;
+        public static int ubsdk_pay_ali_logo=0x7f020001;
+        public static int ubsdk_pay_ic_close=0x7f020002;
+        public static int ubsdk_pay_qq_logo=0x7f020003;
+        public static int ubsdk_pay_selector_pay=0x7f020004;
+        public static int ubsdk_pay_selector_paymethoditem=0x7f020005;
+        public static int ubsdk_pay_shape_round_rect_white=0x7f020006;
+        public static int ubsdk_pay_wx_logo=0x7f020007;
+    }
+    public static final class id {
+        public static int btn_pay=0x7f070005;
+        public static int img_close=0x7f070000;
+        public static int img_payMethodLogo=0x7f070007;
+        public static int ll_payMethodItemContainer=0x7f070004;
+        public static int tv_logo=0x7f070006;
+        public static int tv_payMethodDesc=0x7f070009;
+        public static int tv_payMethodName=0x7f070008;
+        public static int tv_payOrderInfo=0x7f070003;
+        public static int tv_payTitle=0x7f070001;
+        public static int tv_payUserName=0x7f070002;
     }
     public static final class layout {
         public static int activity_main=0x7f030000;
+        public static int ubsdk_pay_dialog_pay=0x7f030001;
+        public static int ubsdk_pay_view_paymethoditem=0x7f030002;
     }
     public static final class string {
         public static int app_name=0x7f050000;
         public static int hello_world=0x7f050001;
+        public static int ubsdk_pay_ali_pay=0x7f050003;
+        public static int ubsdk_pay_ali_pay_desc=0x7f050006;
+        public static int ubsdk_pay_qq_pay=0x7f050002;
+        public static int ubsdk_pay_qq_pay_desc=0x7f050005;
+        public static int ubsdk_pay_sdk_logo=0x7f050008;
+        public static int ubsdk_pay_wx_pay=0x7f050004;
+        public static int ubsdk_pay_wx_pay_desc=0x7f050007;
     }
     public static final class style {
         /** 
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
+
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     
@@ -40,7 +77,10 @@ public final class R {
         public static int AppBaseTheme=0x7f060000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static int AppTheme=0x7f060001;
+        public static int UBSDKPayDialog=0x7f060002;
     }
 }
