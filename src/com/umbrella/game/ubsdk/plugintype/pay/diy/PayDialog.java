@@ -58,6 +58,7 @@ public class PayDialog extends Dialog{
 		mLogo = (TextView) mContainer.findViewById(ResUtil.getViewID(mContext,"tv_logo"));
 		
 		title.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));  
+		mLogo.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));  
 		mPayBtn.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
 		mPayBtn.setEnabled(false);
 		mPayBtn.setClickable(false);
@@ -140,6 +141,7 @@ public class PayDialog extends Dialog{
 				
 				LayoutParams layoutParams = new LinearLayout.LayoutParams(DisplayUtil.dip2px(80), DisplayUtil.dip2px(100));
 				layoutParams.rightMargin=DisplayUtil.dip2px(3);
+				layoutParams.leftMargin=DisplayUtil.dip2px(3);
 				
 				mPayMethodItemContainer.addView(payMethodItemView,layoutParams);
 				
