@@ -1,5 +1,10 @@
 package com.umbrella.game.ubsdk.listener;
 
+/**
+ * 网络接口监听
+ * @author qingshanliao
+ * @param <T>
+ */
 public interface UBHttpListener <T>{
 	/**
 	 * 网络请求成功
