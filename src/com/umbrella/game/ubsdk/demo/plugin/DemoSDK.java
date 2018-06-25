@@ -205,6 +205,10 @@ public class DemoSDK {
 	
 	public void pay(final UBRoleInfo ubRoleInfo,final UBOrderInfo ubOrderInfo){
 		UBLogUtil.logI(TAG+"----->pay");
+		if (ubRoleInfo==null||ubOrderInfo==null) {
+			throw new RuntimeException("demo pay params error!----->ubRoleInfo or ubOrderInfo is null");
+		}
+		UBLogUtil.logD(TAG+"----->ubRoleInfo="+ubRoleInfo+",ubOrderInfo="+ubOrderInfo);
 		UBDialog.showNormalDialog(mActivity, "pay", "Simulate store payment", "success", new DialogInterface.OnClickListener() {
 			
 			@Override
