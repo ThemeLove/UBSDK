@@ -217,6 +217,18 @@ public class UBSDK {
 		}
 	}
 	
+	/**
+	* Called when the window has been attached to the window manager
+	*/
+	public void onAttachedToWindow(){
+		UBLogUtil.logI(TAG+"----->onAttachedToWindow");
+		if (mUBActivityListenerList!=null&&mUBActivityListenerList.size()>0) {
+			for (UBActivityListener ubActivityListener : mUBActivityListenerList) {
+				ubActivityListener.onAttachedToWindow();
+			}
+		}
+	}
+	
 	public void onPause(){
 		UBLogUtil.logI(TAG+"----->onPause");
 		if (mUBActivityListenerList!=null&&mUBActivityListenerList.size()>0) {
