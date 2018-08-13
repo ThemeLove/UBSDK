@@ -22,8 +22,8 @@ import android.text.TextUtils;
 /**
  * 网络相关工具类
  * 
- * @author chuckcheng
- * @version [版本号, 2011-9-27]
+ * @author qingshanliao
+ * @version [版本号, 2018-9-27]
  * @see [相关类/方法]
  * @since [产品/模块版本]
  */
@@ -192,7 +192,7 @@ public class NetworkUtils
         return false;
     }
 
-    /** 获取本机ip。 */
+    /** 获取本机ip */
     public static String getLocalIpAddress()
     {
         // String ipaddress = "";

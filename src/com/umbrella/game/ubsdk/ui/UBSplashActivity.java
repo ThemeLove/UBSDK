@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -24,8 +25,9 @@ public class UBSplashActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+		getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutParams mainLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         mainLayout = new RelativeLayout(this);
         RelativeLayout.LayoutParams splashIvLayoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT,

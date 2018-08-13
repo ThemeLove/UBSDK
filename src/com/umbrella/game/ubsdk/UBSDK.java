@@ -100,6 +100,10 @@ public class UBSDK {
 		});
 	}
 	
+	/**
+	 * 在主线程执行指定任务
+	 * @param runnable  任务
+	 */
 	public void runOnUIThread(Runnable runnable){
 		if (runnable==null) return;
 		if (mMainThreadHandler!=null) {
@@ -107,6 +111,20 @@ public class UBSDK {
 		}else{
 			mActivity.runOnUiThread(runnable);
 		}
+	}
+	
+	/**
+	 * 延迟指定毫秒数在主线程执行指定任务
+	 * @param runnable	任务
+	 * @param delayMillis	延迟毫秒数
+	 */
+	public void runOnUIThread(Runnable runnable,long delayMillis){
+		if (runnable==null) return;
+		if (mMainThreadHandler!=null) {
+			mMainThreadHandler.postDelayed(runnable, delayMillis);
+		}else{
+			new Handler(mActivity.getMainLooper()).postDelayed(runnable, delayMillis);
+		}	
 	}
 	
 //	TODO**************************gamePause*************************		
