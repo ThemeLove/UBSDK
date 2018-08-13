@@ -13,6 +13,7 @@ import com.umbrella.game.ubsdk.plugintype.pay.UBOrderInfo;
 import com.umbrella.game.ubsdk.plugintype.pay.diy.PayMethodItem;
 import com.umbrella.game.ubsdk.utils.AssetUtil;
 import com.umbrella.game.ubsdk.utils.TextUtil;
+import com.umbrella.game.ubsdk.utils.UBLogUtil;
 
 import android.util.Xml;
 
@@ -36,8 +37,14 @@ public class UBPayConfigModel {
 	 * 加载商店支付配置
 	 * @return
 	 */
-	public HashMap<String,PayConfig> loadStorePayConfig(String payConfigPath){
-		String payConfigStr = AssetUtil.getAssetConfigStr(UBSDKConfig.getInstance().getApplicationContext(), "payConfig.xml");
+	public HashMap<String,PayConfig> loadStorePayConfig(String payConfigPath,boolean isEncrypt){
+		UBLogUtil.logI(TAG+"----->loadStorePayConfig----->isEncrypt="+isEncrypt);
+		String payConfigStr="";
+		if (isEncrypt) {
+			payConfigStr=AssetUtil.getAssetDESConfigStr(UBSDKConfig.getInstance().getApplicationContext(), "payConfig.xml");
+		}else{
+			payConfigStr=AssetUtil.getAssetConfigStr(UBSDKConfig.getInstance().getApplicationContext(), "payConfig.xml");
+		}
 		if (TextUtil.isEmpty(payConfigStr))return null;
 		HashMap<String, PayConfig> payConfigMap = new HashMap<>();
 		
