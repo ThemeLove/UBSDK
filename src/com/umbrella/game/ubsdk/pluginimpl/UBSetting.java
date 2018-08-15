@@ -26,64 +26,68 @@ public class UBSetting implements IUBSettingPlugin{
 	}
 	
 	public void init(){
-		UBLogUtil.logI(TAG+"----->init");
 		
-		mUBSettingPlugin=(IUBSettingPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_SETTING);
+		UBSDK.getInstance().runOnUIThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				UBLogUtil.logI(TAG+"----->init");
+				mUBSettingPlugin=(IUBSettingPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_SETTING);
+				if (mUBSettingPlugin==null) {
+					UBLogUtil.logE(TAG+"----->no instance of settingPlugin ,instance DemoSettingPlugin instead");
+					mUBSettingPlugin=new DemoSettingPlugin(UBSDKConfig.getInstance().getGameActivity());
+				}else{
+					UBLogUtil.logI(TAG+"----->create settingPlugin success");
+				}
+				
+			}
+		});
 
-		if (mUBSettingPlugin==null) {
-			UBLogUtil.logE(TAG+"----->no instance of settingPlugin ,instance DemoSettingPlugin instead");
-			mUBSettingPlugin=new DemoSettingPlugin(UBSDKConfig.getInstance().getGameActivity());
-		}else{
-			UBLogUtil.logI(TAG+"----->create settingPlugin success");
-		}
 	}
 	
 	@Override
 	public void gamePause() {
-		UBLogUtil.logI(TAG+"----->gamePause");
-		if (mUBSettingPlugin!=null) {
-			UBSDK.getInstance().runOnUIThread(new Runnable() {
+		UBSDK.getInstance().runOnUIThread(new Runnable() {
+			@Override
+			public void run() {
 				
-				@Override
-				public void run() {
+				UBLogUtil.logI(TAG+"----->gamePause");
+				if (mUBSettingPlugin!=null) {
 					mUBSettingPlugin.gamePause();
-				}
-			});
-		}else{
-			UBSDK.getInstance().runOnUIThread(new Runnable() {
-				
-				@Override
-				public void run() {
+				}else{
 					UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
 					UBSDK.getInstance().getUBGamePauseCallback().onFailed("no instance of settingPlugin");
 				}
-			});
-		}
+				
+			}
+		});
+		
 	}
 
 	@Override
 	public void exit() {
-		UBLogUtil.logI(TAG+"----->exit");
-		if (mUBSettingPlugin!=null) {
-			UBSDK.getInstance().runOnUIThread(new Runnable() {
+		
+		UBSDK.getInstance().runOnUIThread(new Runnable() {
+			
+			@Override
+			public void run() {
 				
-				@Override
-				public void run() {
+				UBLogUtil.logI(TAG+"----->exit");
+				if (mUBSettingPlugin!=null) {
 					mUBSettingPlugin.exit();
-				}
-			});
-		}else{
-			UBSDK.getInstance().runOnUIThread(new Runnable() {
-				
-				@Override
-				public void run() {
+				}else{
 					UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
 					UBSDK.getInstance().getUBExitCallback().onCancel("no instance of settingPlugin",null);
 				}
-			});
-			
-		}
+				
+			}
+		});
+		
 	}
+	
+	
+	/*************************************************** 有返回值的方法 ***************************************************/
 
 	@Override
 	public int getPlatformID() {
@@ -138,8 +142,10 @@ public class UBSetting implements IUBSettingPlugin{
 		UBLogUtil.logI(TAG+"----->isSupportMethod");
 		if (mUBSettingPlugin!=null) {
 			return mUBSettingPlugin.isSupportMethod(methodName,args);
+		}else{
+			UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
+			return false;
 		}
-		return false;
 	}
 	
 	@Override
@@ -147,7 +153,9 @@ public class UBSetting implements IUBSettingPlugin{
 		UBLogUtil.logI(TAG+"----->callMethod");
 		if (mUBSettingPlugin!=null) {
 			return mUBSettingPlugin.callMethod(methodName, args);
+		}else{
+			UBLogUtil.logE(TAG+"----->no instance of settingPlugin");
+			return null;
 		}
-		return null;
 	}
 }

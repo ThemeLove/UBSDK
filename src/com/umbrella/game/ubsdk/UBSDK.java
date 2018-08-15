@@ -37,6 +37,11 @@ public class UBSDK {
 	private UBSDK(){
 		mMainThreadHandler=new Handler(Looper.getMainLooper());
 	};
+	
+	/**
+	 * Get the UBSDK singleton instance, must be called in the main UI thread
+	 * @return UBSDK singleton instance
+	 */
 	public static UBSDK getInstance(){
 		if (instance==null) {
 			synchronized (UBSDK.class) {
@@ -66,6 +71,7 @@ public class UBSDK {
 		UBLogUtil.logI(TAG+"----->setUBSwitchAccountCallback");
 		this.mUBSwitchAccountCallback=ubSwitchAccountCallback;
 	}
+	
 	public UBSwitchAccountCallback getUBSwitchAccountCallback(){
 		return mUBSwitchAccountCallback;
 	}
@@ -76,22 +82,22 @@ public class UBSDK {
 		return mUBInitCallback;
 	}
 	
-	public void init(Activity activity,UBInitCallback ubInitCallback){
-		this.mActivity=activity;
-		this.mUBInitCallback=ubInitCallback;
-		
-		UBLogUtil.logI(TAG+"----->init");
-		UBLogUtil.logI(TAG+"----->setUBInitCallback");
-		
-		UBSDKConfig.getInstance().setGameActivity(activity);
-		
-//		初始化屏幕工具类
-		DisplayUtil.initScreen(activity);
-		
+	public void init(final Activity activity,final UBInitCallback ubInitCallback){
 		runOnUIThread(new Runnable() {
 			
 			@Override
 			public void run() {
+				UBLogUtil.logI(TAG+"----->init");
+				UBLogUtil.logI(TAG+"----->setUBInitCallback");
+				
+				mActivity=activity;
+				mUBInitCallback=ubInitCallback;
+				
+				UBSDKConfig.getInstance().setGameActivity(activity);
+//				初始化屏幕工具类
+				DisplayUtil.initScreen(activity);
+				
+				
 				UBUser.getInstance().init();
 				UBPay.getInstance().init();
 				UBSetting.getInstance().init();
@@ -319,7 +325,7 @@ public class UBSDK {
 		}
 	}
 	
-//	TODO**************************other*************************
+// TODO**************************other*************************
 	public void getUserInfo(){
 		UBLogUtil.logI(TAG+"----->getUserInfo");
 		UBUser.getInstance().getUserInfo();

@@ -41,9 +41,9 @@ public class UBPayConfigModel {
 		UBLogUtil.logI(TAG+"----->loadStorePayConfig----->isEncrypt="+isEncrypt);
 		String payConfigStr="";
 		if (isEncrypt) {
-			payConfigStr=AssetUtil.getAssetDESConfigStr(UBSDKConfig.getInstance().getApplicationContext(), "payConfig.xml");
+			payConfigStr=AssetUtil.getAssetDESConfigStr(UBSDKConfig.getInstance().getApplicationContext(),payConfigPath);
 		}else{
-			payConfigStr=AssetUtil.getAssetConfigStr(UBSDKConfig.getInstance().getApplicationContext(), "payConfig.xml");
+			payConfigStr=AssetUtil.getAssetConfigStr(UBSDKConfig.getInstance().getApplicationContext(),payConfigPath);
 		}
 		if (TextUtil.isEmpty(payConfigStr))return null;
 		HashMap<String, PayConfig> payConfigMap = new HashMap<>();

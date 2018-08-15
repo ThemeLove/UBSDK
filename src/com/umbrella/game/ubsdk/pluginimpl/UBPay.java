@@ -27,54 +27,64 @@ public class UBPay implements IUBPayPlugin{
 	}
 
 	public void init(){
-		UBLogUtil.logI(TAG+"----->init");
-		mUBPayPlugin=(IUBPayPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_PAY);
-		if (mUBPayPlugin==null) {
-			UBLogUtil.logE(TAG+"----->no instance of payPlugin ,instance DemoPayPlugin instead");
-			mUBPayPlugin=new DemoPayPlugin(UBSDKConfig.getInstance().getGameActivity());
-		}else{
-			UBLogUtil.logI(TAG+"----->create payPlugin success");
-		}
+		
+		UBSDK.getInstance().runOnUIThread(new Runnable() {
+			@Override
+			public void run() {
+				UBLogUtil.logI(TAG+"----->init");
+				mUBPayPlugin=(IUBPayPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_PAY);
+				if (mUBPayPlugin==null) {
+					UBLogUtil.logE(TAG+"----->no instance of payPlugin ,instance DemoPayPlugin instead");
+					mUBPayPlugin=new DemoPayPlugin(UBSDKConfig.getInstance().getGameActivity());
+				}else{
+					UBLogUtil.logI(TAG+"----->create payPlugin success");
+				}
+			}
+		});
+		
 	}
 	
 	@Override
 	public void pay(final UBRoleInfo ubRoleInfo, final UBOrderInfo ubOrderInfo) {
-		UBLogUtil.logI(TAG+"----->pay");
-		if (mUBPayPlugin!=null) {
-			UBSDK.getInstance().runOnUIThread(new Runnable() {
+		
+		UBSDK.getInstance().runOnUIThread(new Runnable() {
+			@Override
+			public void run() {
 				
-				@Override
-				public void run() {
+				UBLogUtil.logI(TAG+"----->pay");
+				if (mUBPayPlugin!=null) {
 					mUBPayPlugin.pay(ubRoleInfo, ubOrderInfo);
-				}
-			});
-		}else{
-			UBSDK.getInstance().runOnUIThread(new Runnable() {
-				
-				@Override
-				public void run() {
+				}else{
 					UBLogUtil.logE(TAG+"----->no instance of payPlugin");
 					UBSDK.getInstance().getUBPayCallback().onFailed("","no instance of payPlugin",null); 
 				}
-			});
-			
-		}
+				
+			}
+		});
+		
 	}
+	
+	/*************************************************** 有返回值的方法 ***************************************************/
 	@Override
 	public boolean isSupportMethod(String methodName,Object[] args) {
 		UBLogUtil.logI(TAG+"----->isSupportMethod");
 		if (mUBPayPlugin!=null) {
 			return mUBPayPlugin.isSupportMethod(methodName,args);
+		}else{
+			UBLogUtil.logE(TAG+"----->no instance of payPlugin");
+			return false;
 		}
-		return false;
 	}
+	
 	@Override
 	public Object callMethod(String methodName, Object[] args) {
 		UBLogUtil.logI(TAG+"----->callMethod");
 		if (mUBPayPlugin!=null) {
 			return mUBPayPlugin.callMethod(methodName, args);
+		}else{
+			UBLogUtil.logE(TAG+"----->no instance of payPlugin");
+			return null;
 		}
-		return null;
 	}
 
 }

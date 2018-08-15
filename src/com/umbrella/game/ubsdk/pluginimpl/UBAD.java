@@ -27,117 +27,151 @@ public class UBAD implements IUBADPlugin{
 	}
 
 	public void init(){
-		UBLogUtil.logI(TAG+"----->init");
-		mUBADPlugin=(IUBADPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_AD);
-		if (mUBADPlugin==null) {
-			UBLogUtil.logE(TAG+"----->no instance of ADPlugin ,instance DemoADPlugin instead");
-			mUBADPlugin=new DemoADPlugin(UBSDKConfig.getInstance().getGameActivity());
-		}else{
-			UBLogUtil.logI(TAG+"----->create ADPlugin success");
-		}
+		
+		UBSDK.getInstance().runOnUIThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				UBLogUtil.logI(TAG+"----->init");
+				mUBADPlugin=(IUBADPlugin) PluginFactory.newPlugin(PluginType.PLUGIN_TYPE_AD);
+				if (mUBADPlugin==null) {
+					UBLogUtil.logE(TAG+"----->no instance of ADPlugin ,instance DemoADPlugin instead");
+					mUBADPlugin=new DemoADPlugin(UBSDKConfig.getInstance().getGameActivity());
+				}else{
+					UBLogUtil.logI(TAG+"----->create ADPlugin success");
+				}
+				
+			}
+		});
+		
+
 	}
 	
-	private UBADCallback mUBADCallback;
 	
+	
+	private UBADCallback mUBADCallback;
 
 	/**
 	 * set the UBAD Callback
 	 * @param ubADCallback
 	 */
-	private void setUBADCallback(UBADCallback ubADCallback){
-		UBLogUtil.logI(TAG+"----->setUBADCallback");
-		mUBADCallback=ubADCallback;
+	private void setUBADCallback(final UBADCallback ubADCallback){
+		
+		UBSDK.getInstance().runOnUIThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				UBLogUtil.logI(TAG+"----->setUBADCallback");
+				mUBADCallback=ubADCallback;
+			}
+		});
+
 	}
 	
-	/**
-	 * return the UBAD Callback
-	 * @return
-	 */
+	public void showADWithADType(final int adType,final UBADCallback ubADCallback){
+		
+		UBSDK.getInstance().runOnUIThread(new Runnable() {
+			
+			@Override
+			public void run() {
 
-	public UBADCallback getUBADCallback(){
-		UBLogUtil.logI(TAG+"----->getUBADCallback");
-		return mUBADCallback;
-	}
-
-	@Override
-	public boolean isSupportMethod(String methodName,Object[] args) {
-		UBLogUtil.logI(TAG+"----->isSupportMethod");
-		if (mUBADPlugin!=null) {
-			return mUBADPlugin.isSupportMethod(methodName,args);
-		}
-		return false;
-	}
-	@Override
-	public Object callMethod(String methodName, Object[] args) {
-		UBLogUtil.logI(TAG+"----->callMethod");
-		if (mUBADPlugin!=null) {
-			return mUBADPlugin.callMethod(methodName, args);
-		}
-		return null;
-	}
-
-	@Override
-	public boolean isSupportADType(int adType) {
-		UBLogUtil.logI(TAG+"----->isSupportADType");
-		if (mUBADPlugin!=null) {
-			return mUBADPlugin.isSupportADType(adType);
-		}
-		return false;
-	}
-	
-	public void showADWithADType(int adType,UBADCallback ubADCallback){
-		UBLogUtil.logI(TAG+"----->showADWithADtype with UBADcallback");
-		setUBADCallback(ubADCallback);
-		showADWithADType(adType);
+				UBLogUtil.logI(TAG+"----->showADWithADtype with adType and UBADcallback");
+				setUBADCallback(ubADCallback);
+				showADWithADType(adType);
+			}
+		});
+		
 	}
 
 	@Override
 	public void showADWithADType(final int adType) {
-		UBLogUtil.logI(TAG+"----->showADWithADType");
-		if (mUBADPlugin!=null) {
-			UBSDK.getInstance().runOnUIThread(new Runnable() {
-				@Override
-				public void run() {
-					mUBADPlugin.showADWithADType(adType);
-				}
-			});
-		}else{
-			UBSDK.getInstance().runOnUIThread(new Runnable() {
+		
+		UBSDK.getInstance().runOnUIThread(new Runnable() {
+			
+			@Override
+			public void run() {
 				
-				@Override
-				public void run() {
+				UBLogUtil.logI(TAG+"----->showADWithADType");
+				if (mUBADPlugin!=null) {
+					mUBADPlugin.showADWithADType(adType);
+				}else{
+					
+					UBLogUtil.logE(TAG+"----->no instance of AD Plugin");
 					UBADCallback ubADCallback = UBAD.getInstance().getUBADCallback();
 					if (ubADCallback!=null) {
 						ubADCallback.onFailed(adType, "no instance of AD plugin");
 					}
 				}
-			});
-		}
+			}
+		});
+		
 	}
 
 	@Override
 	public void hideADWithADType(final int adType) {
-		UBLogUtil.logI(TAG+"----->hideADWithADType");
-		if (mUBADPlugin!=null) {
-			UBSDK.getInstance().runOnUIThread(new Runnable() {
+		
+		UBSDK.getInstance().runOnUIThread(new Runnable() {
+			
+			@Override
+			public void run() {
 				
-				@Override
-				public void run() {
+				UBLogUtil.logI(TAG+"----->hideADWithADType");
+				if (mUBADPlugin!=null) {
 					mUBADPlugin.hideADWithADType(adType);
-				}
-			});
-		}else{
-			UBSDK.getInstance().runOnUIThread(new Runnable() {
-				@Override
-				public void run() {
+				}else{
+					UBLogUtil.logE(TAG+"----->no instance of AD Plugin");
 					UBADCallback ubADCallback = UBAD.getInstance().getUBADCallback();
 					if (ubADCallback!=null) {
-						ubADCallback.onFailed(adType, "no instance of AD plugin!");
-						
+						ubADCallback.onFailed(adType, "no instance of AD plugin");
 					}
 				}
-			});
-		}
+			}
+			
+		});
+	
 	}
 
+	/*************************************************** 有返回值的方法 ***************************************************/
+	/**
+	 * return the UBAD Callback
+	 * @return
+	 */
+	public UBADCallback getUBADCallback(){
+		UBLogUtil.logI(TAG+"----->getUBADCallback");
+		return mUBADCallback;
+	}
+	
+	@Override
+	public boolean isSupportADType(int adType) {
+		UBLogUtil.logI(TAG+"----->isSupportADType");
+		if (mUBADPlugin!=null) {
+			return mUBADPlugin.isSupportADType(adType);
+		}else{
+			UBLogUtil.logE(TAG+"----->no instance of AD plugin");
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean isSupportMethod(String methodName,Object[] args) {
+		UBLogUtil.logI(TAG+"----->isSupportMethod");
+		if (mUBADPlugin!=null) {
+			return mUBADPlugin.isSupportMethod(methodName,args);
+		}else{
+			UBLogUtil.logE(TAG+"----->no instance of AD plugin");
+			return false;
+		}
+	}
+	
+	@Override
+	public Object callMethod(String methodName, Object[] args) {
+		UBLogUtil.logI(TAG+"----->callMethod");
+		if (mUBADPlugin!=null) {
+			return mUBADPlugin.callMethod(methodName, args);
+		}else{
+			UBLogUtil.logE(TAG+"----->no instance of AD plugin");
+			return null;
+		}
+	}
 }
